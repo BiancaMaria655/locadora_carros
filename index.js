@@ -8,6 +8,7 @@ const FileStore = require('session-file-store')(session)
     // const path = require('path')
 const conn = require('./models/Database')
 const customerRouter = require('./routes/customerRouter')
+const Car = require('./models/Car')
 
 //adicionando partials
 handlebars.create({ partialsDir: ['./views/partials'] })
