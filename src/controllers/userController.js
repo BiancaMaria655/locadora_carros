@@ -122,6 +122,7 @@ module.exports = class userController {
     }
 
     // admin functions
+    
     static adminDashboard(req, res){
       res.render('users/adminDashboard')
     }
