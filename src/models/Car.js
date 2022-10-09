@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./Database');
+const User = require('./User');
 
 const Car = db.define('cars', {
   id: {
@@ -42,6 +43,9 @@ const Car = db.define('cars', {
     allowNull: true
   }
 });
+
+Car.belongsTo(User)
+User.hasMany(Car)
 
 Car.sync();
 
