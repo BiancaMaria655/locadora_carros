@@ -1,6 +1,7 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const session = require('express-session');
+const FileStone = require('session-file-store')(session)
 const bodyParser = require('body-parser');
 const path = require('path');
 
