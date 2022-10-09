@@ -12,5 +12,6 @@ router.get('/alterar/:id', UserController.updateCustomer)
 router.post('/alterar', UserController.updateCustomerSave)
 router.post('/apagar', UserController.removeCustomer)
 router.get('/dashboard', UserController.customerDashboard)
+    //inserir listar clientes nas rotas de admin
 
 module.exports = router
