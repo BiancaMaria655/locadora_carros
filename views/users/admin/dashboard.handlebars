@@ -1,9 +1,15 @@
 <div class="users container p-2">
-  <form action="/admin/add" method="POST" class="d-flex p-1">
-    <div class="row">
+  {{#if success}}
+    <div class="aler alert-success mb-3">
+      {{success}}
+    </div>
+
+  {{/if}}
+  <form action="/admin/add" method="POST" class="d-flex p-2 border">
+    <div class="row ">
       <div class="mb-3 col-auto">
-        <label for="nome" class="form-label">Nome</label>
-        <input type="text" name="nome" class="form-control" required>
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" name="name" class="form-control" required>
         
       </div>
       <div class="mb-3 col-auto">
@@ -30,15 +36,20 @@
     </div>
 
   </form>
-  {{#if users}}
-    <div class=" row justify-content-start">
+  <div class="border p-2">
+    {{#if users}}
+    <div class=" row justify-content-start table-bordered">
       
-      <div class="col"><label for="">Nome</label></div>
-      <div class="col-3"><label for="">Email</label></div>
-      <div class="col"><label for="">Senha</label></div>
-      <div class="col"><label for="">CPF</label></div>
-      <div class="col"><label for="">Tipo</label></div>
-      <div class="col"><label for="">Ações</label></div>
+      <thead class="table-bordered">
+
+        <th scope="col"><div class="col"><label for="">Nome</label></div></th>
+        <th scope="col"><div class="col-3"><label for="">Email</label></div></th>
+        <div class="col"><label for="">Senha</label></div>
+        <div class="col"><label for="">CPF</label></div>
+        <div class="col"><label for="">Tipo</label></div>
+        <div class="col"><label for="">Ações</label></div>
+      </thead>
+
 
     </div>
   {{/if}}
@@ -48,5 +59,6 @@
       {{>admin}}
     
     {{/each}}
+  </div>
  
 </div>

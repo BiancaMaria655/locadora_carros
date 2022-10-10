@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
-const flash = require('req-flash');
+const flash = require('express-flash');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 // const bodyParser = require('body-parser')
@@ -39,7 +39,16 @@ app.use(
   })
 );
 app.use(flash());
-
+app.use(function(req, res, next){
+  // if there's a flash message in the session request, make it available in the response, then delete it
+  res.locals.sessionFlash = req.session.sessionFlash;
+  delete req.session.sessionFlash;
+  next();
+});
+app.use((req, res, next)=>{
+  app.locals.success = req.flash('success')
+  next();
+});
 
 //parser para o body
 app.use(express.json());

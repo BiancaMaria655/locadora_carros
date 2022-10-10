@@ -135,7 +135,7 @@ module.exports = class userController {
   }
   static async newAdminSave(req, res) {
     const formAdmin = {
-      name: req.body.nome,
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password,
       cpf: req.body.cpf,
@@ -143,7 +143,7 @@ module.exports = class userController {
     };
     try {
       await User.create(formAdmin);
-      req.flash('Você se cadastrou com sucesso!');
+      req.flash('success', 'cadastrado com sucesso!');
       req.session.save(() => {
         res.redirect('/admin/dashboard');
       });
