@@ -1,5 +1,6 @@
 const User = require('../models/User');
 
+
 module.exports = class userController {
   //tela de login
   static login(req, res) {
@@ -97,7 +98,7 @@ module.exports = class userController {
         phone: req.body.phone,
         address: req.body.address
       };
-      await User.update(costumer, { where: { id: id } });
+      await User.update(customer, { where: { id: id } });
       req.flash('message', 'Você atualizou seu cadastro com sucesso!');
       req.session.save(() => {
         res.redirect('cliente/dashboard');
@@ -123,8 +124,29 @@ module.exports = class userController {
 
   static async adminDashboard(req, res) {
     try {
-      const users = await User.findAll({ raw: true });
+      const users = await User.findAll({
+        where: { user_type: 'ADM' },
+        raw: true
+      });
       res.render('users/admin/Dashboard', { users });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async newAdminSave(req, res) {
+    const formAdmin = {
+      name: req.body.nome,
+      email: req.body.email,
+      password: req.body.password,
+      cpf: req.body.cpf,
+      user_type: req.body.user_type
+    };
+    try {
+      await User.create(formAdmin);
+      req.flash('Você se cadastrou com sucesso!');
+      req.session.save(() => {
+        res.redirect('/admin/dashboard');
+      });
     } catch (error) {
       console.log(error);
     }

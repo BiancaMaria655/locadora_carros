@@ -17,32 +17,30 @@ handlebars.create({ partialsDir: ['./views/partials'] });
 //flash mensagens
 //session middleware
 app.use(
-    session({
-      name: 'session', // nome da sessao
-      secret: 'secret', // chave da sessao
-      resave: false, //permite armazenar a sessão sem finalizá-la
-      saveUninitialized: false, //envia uma sessão criada, mas n iniciada para armazenamento
-      store: new FileStore({
-        //indica onde o arquivo da sessão será salvo
-        logFn: function () {},
-        path: require('path').join(require('os').tmpdir(), 'sessions')
-      }),
-      cookie: {
-        //início do cookie]
-        resave: false,
-        saveUninitialized: false,
-        secure: false, //usado somente com https
-        maxAge: 360000, //tempo máximo do cookie em milisegundos
-        expires: new Date(Date.now() + 360000), //marca a hora de expirar
-        httpOnly: true
-      }
-    })
-  );
+  session({
+    name: 'session', // nome da sessao
+    secret: 'secret', // chave da sessao
+    resave: false, //permite armazenar a sessão sem finalizá-la
+    saveUninitialized: false, //envia uma sessão criada, mas n iniciada para armazenamento
+    store: new FileStore({
+      //indica onde o arquivo da sessão será salvo
+      logFn: function () {},
+      path: require('path').join(require('os').tmpdir(), 'sessions')
+    }),
+    cookie: {
+      //início do cookie]
+      resave: false,
+      saveUninitialized: false,
+      secure: false, //usado somente com https
+      maxAge: 360000, //tempo máximo do cookie em milisegundos
+      expires: new Date(Date.now() + 360000), //marca a hora de expirar
+      httpOnly: true
+    }
+  })
+);
 app.use(flash());
 
-// rotas
-app.use('/cliente', customerRouter);
-app.use('/admin', admRouter);
+
 //parser para o body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -55,9 +53,7 @@ app.engine('handlebars', handlebars.engine());
 app.set('view engine', 'handlebars');
 
 //adicionando css
-app.use(express.static('/public'));
-
-
+app.use(express.static(__dirname + '/public'));
 
 //set session to res
 app.use((req, res, next) => {
@@ -67,6 +63,12 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+
+// rotas
+app.use('/cliente', customerRouter);
+app.use('/admin', admRouter);
+
 
 const port = 3000;
 conn
