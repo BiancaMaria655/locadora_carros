@@ -1,3 +1,4 @@
+const { raw } = require('body-parser');
 const User = require('../models/User');
 
 
@@ -144,6 +145,25 @@ module.exports = class userController {
     try {
       await User.create(formAdmin);
       req.flash('success', 'cadastrado com sucesso!');
+      req.session.save(() => {
+        res.redirect('/admin/dashboard');
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async updateAdmin(req, res) {
+    try {
+      const id = req.body.id;
+      const admin = {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        cpf: req.body.cpf,
+        user_type: req.body.user_type,
+      };
+      await User.update(admin, { where: { id: id } });
+      req.flash('success', 'Você atualizou com sucesso!');
       req.session.save(() => {
         res.redirect('/admin/dashboard');
       });
