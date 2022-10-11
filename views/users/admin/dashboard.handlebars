@@ -1,0 +1,38 @@
+<div class="users container p-2">
+  {{#if success}}
+    <div class="aler alert-success mb-3">
+      {{success}}
+    </div>
+
+  {{/if}}
+  
+    {{>formAdmin}}
+
+  <div class="border p-2">
+    {{#if users}}
+    <div class=" row justify-content-start table-bordered">
+      
+      <thead class="table-bordered">
+
+        <th scope="col"><div class="col"><label for="">Nome</label></div></th>
+        <th scope="col"><div class="col-3"><label for="">Email</label></div></th>
+        <div class="col"><label for="">Senha</label></div>
+        <div class="col"><label for="">CPF</label></div>
+        <div class="col"><label for="">Tipo</label></div>
+        <div class="col"><label for="">Ações</label></div>
+      </thead>
+
+
+    </div>  
+  {{/if}}
+  
+    {{#each users}}
+      <div id="adminList">
+        {{>admin}}
+
+      </div>
+    
+    {{/each}}
+  </div>
+ 
+</div>

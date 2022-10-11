@@ -44,8 +44,8 @@ const Car = db.define('cars', {
   }
 });
 
-Car.belongsTo(User)
-User.hasMany(Car)
+//Car.belongsTo(User)
+//User.hasMany(Car)
 
 Car.sync();
 
