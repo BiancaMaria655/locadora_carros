@@ -11,6 +11,6 @@ router.post('/cadastro', UserController.newCustomerSave);
 router.get('/alterar/:id', UserController.updateCustomer);
 router.post('/alterar', UserController.updateCustomerSave);
 router.post('/apagar', UserController.removeCustomer);
-router.get('/costumerDashboard', UserController.customerDashboard);
+router.get('/dashboard', UserController.customerDashboard);
 
 module.exports = router;

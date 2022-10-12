@@ -14,20 +14,20 @@ module.exports = class userController {
         }
         //realizar login
     static async loginSend(req, res) {
-        const { email, password } = req.body;
+        const email = req.body.email;
+        const password = req.body.password;
         const user = await User.findOne({ where: { email: email } });
         if (!user) {
             req.flash('message', 'Usuário não encontrado');
             res.render('users/customerRegistration');
-        }
-        if (!password === user.password) {
+        } else if (password != user.password) {
             req.flash('message', 'Senha inválida!');
-            res.render('users/customerRegistration');
+            res.render('users/login');
         }
         req.session.userid = user.id;
         req.flash('message', 'Usuário logado com sucesso');
         req.session.save(() => {
-            res.redirect('/');
+            res.redirect('/cliente/dashboard');
         });
     }
 
