@@ -3,6 +3,7 @@ const User = require('../models/User')
 
 
 module.exports = class CarController{
+    //tela para cadastrar veículo
     static async newCar(req, res){
         try {
          res.render('car/addCar')        
@@ -11,6 +12,7 @@ module.exports = class CarController{
         }
      }
     
+     // salvar registro do veículo
      static async newCarSave(req, res){
         try {
             const car = {
@@ -32,6 +34,7 @@ module.exports = class CarController{
         }
     }
 
+    //lista de todos os clientes
     static async allCars(req, res){
         try {
             //por enquanto exibe sem pedir login
@@ -42,6 +45,7 @@ module.exports = class CarController{
         }
     }
 
+    //tela de editar veículo
     static async updateCar(req, res){
         try {
             // const id = req.session.userid
@@ -55,6 +59,7 @@ module.exports = class CarController{
         }
     }
 
+    //salvar alterações dos dados do veículo
     static async updateCarSave(req, res){
         try {
             const id = req.body.id
@@ -77,6 +82,7 @@ module.exports = class CarController{
         }
     }
 
+    // remover veículo
     static async removeCar(req, res){
         try {
             const id = req.body.id
