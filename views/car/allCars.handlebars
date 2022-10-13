@@ -1,0 +1,42 @@
+<div class="title">
+    <h1>Todos os veículos</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Modelo</th>
+      <th scope="col">Ano</th>
+      <th scope="col">Fabricante</th>
+      <th scope="col">Valor da Locação</th>
+      <th scope="col">Cor</th>
+      <th scope="col">Disponível</th>
+      <th scope="col">Adicionais</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each cars}}
+    <tr>      
+      <td>{{this.nome}}</td>
+      <td>{{this.modelo}}</td>
+      <td>{{this.ano}}</td>
+      <td>{{this.fabricante}}</td>
+      <td>{{this.valor_loc}}</td>
+      <td>{{this.cor}}</td>
+      <td>{{this.disponivel}}</td>
+      <td>{{this.adicionais}}</td>
+      <td>
+        <div class="col-md-4 actions">
+        <a href="/car/edit/{{this.id}}">Editar</a>
+        <form action="/car/removeCar" method="post">
+          <input type="hidden" name="id" value="{{this.id}}">
+          <button type="submit" class="btn-delete">Remover</button>
+        </form>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

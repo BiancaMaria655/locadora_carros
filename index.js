@@ -9,7 +9,8 @@ const FileStore = require('session-file-store')(session);
 const conn = require('./models/Database');
 const customerRouter = require('./routes/customerRouter');
 const admRouter = require('./routes/admRouter');
-const Car = require('./models/Car');
+const Car = require('./routes/carRouter');
+
 
 //adicionando partials
 handlebars.create({ partialsDir: ['./views/partials'] });
@@ -77,6 +78,8 @@ app.use((req, res, next) => {
 // rotas
 app.use('/cliente', customerRouter);
 app.use('/admin', admRouter);
+app.use('/car', Car);
+
 
 
 const port = 3000;
