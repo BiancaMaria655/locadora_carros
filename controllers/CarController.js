@@ -34,7 +34,7 @@ module.exports = class CarController{
         }
     }
 
-    //lista de todos os clientes
+    //lista de todos os veículos
     static async allCars(req, res){
         try {
             //por enquanto exibe sem pedir login
