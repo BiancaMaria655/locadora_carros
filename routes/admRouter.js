@@ -5,5 +5,5 @@ const UserController = require('../controllers/userController');
 router.get('/dashboard', UserController.adminDashboard);
 router.post('/add', UserController.newAdminSave);
 
-router.get('/editar', UserController.updateAdmin)
+router.post('/editar', UserController.updateAdmin);
 module.exports = router;

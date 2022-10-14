@@ -2,29 +2,31 @@
     <div class="row ">
       <div class="mb-3 col-auto">
         <label for="name" class="form-label">Nome</label>
-        <input type="text" name="name" class="form-control" required>
+        <input type="text" name="name" class="form-control" id="formName" required>
         
       </div>
       <div class="mb-3 col-auto">
         <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" required>
+        <input type="email" name="email" class="form-control" id="formEmail" required>
         
       </div>
       <div class="mb-3 col-auto">
         <label for="password" class="form-label">Senha</label>
-        <input type="password" name="password" class="form-control" required>
+        <input type="password" name="password" class="form-control" id="formPass" required>
       </div>
       <div class="mb-3 col-auto">
         <label for="cpf" class="form-label">CPF</label>
-        <input type="text" name="cpf" class="form-control" required>
+        <input type="text" name="cpf" class="form-control" id="formCpf" required>
       </div>
       <div class="mb-3 col-auto">
         <label for="user_type" class="form-label">Tipo</label>
-        <input type="text" name="user_type" class="form-control" required>
+        <input type="text" name="user_type" class="form-control" id="formType" required>
       </div>
       <div class="col-auto">
-        <label for="" class="form-label">.</label>
-        <input type="submit" value="Cadastrar" class="form-control btn btn-primary">
+        <label for="name" class="form-label">.</label>
+        <input type="text" value="" name="id" id="updateFormId" hidden>
+        <input type="submit" value="Cadastrar" class="form-control btn btn-primary" id="createForm">
+        <input type="submit" value="Salvar" class="form-control btn btn-success" id="updateForm" hidden>
       </div>
     </div>
 

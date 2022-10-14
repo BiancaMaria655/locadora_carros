@@ -15,7 +15,11 @@ const Car = require('./routes/carRouter');
 //adicionando partials
 handlebars.create({ partialsDir: ['./views/partials'] });
 
-//flash mensagens
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
 //session middleware
 app.use(
     session({

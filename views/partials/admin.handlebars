@@ -1,24 +1,17 @@
 
 <div class="row justify-content-start md" id="{{this.id}}">
   
-    <label name="id" hidden>{{this.id}}</label> 
-    <div class="col"><input name="name" class="p-1"value="{{this.name}}" id="name{{this.id}}" disabled></div>
-    <div class="col-3"><label name="email" class="p-1">{{this.email}}</label></div>
-    <div class="col"><label name="password" class="p-1">{{this.password}}</label></div>
-    <div class="col"><label name="cpf"  class="p-1">{{this.cpf}}</label></div>
-    <div class="col"><label name="user_type" class="p-1">{{this.user_type}}</label></div>
+    <input name="id" id="id{{this.id}}" value="{{this.id}}" hidden>
+    <div class="col-auto"><input name="name" class="p-1"value="{{this.name}}" id="name{{this.id}}" disabled></div>
+    <div class="col-auto"><input name="email" class="p-1" value="{{this.email}}" id="email{{this.id}}" disabled></div>
+    <div class="col-auto"><input name="password" class="p-1" value="{{this.password}}" id="pass{{this.id}}" disabled></div>
+    <div class="col-auto"><input name="cpf"  class="p-1" value="{{this.cpf}}" id="cpf{{this.id}}" disabled></div>
+    <div class="col-auto"><input name="user_type" class="p-1" value="{{this.user_type}}" id="type{{this.id}}" disabled></div>
     
     <div class="buttons col d-flex ">
       <div class="p-1">
-        
-          
-        <a class="btnEditar btn btn-warning" name="btnE" id="btnE{{this.id}}">Editar</a>
-        <form action="/admin/editar" method="post">
-          <input type="text" name="id" value="{{this.id}}", hidden>
-          <input type="submit" value="Salvar" class="btnEditar btn btn-success" name="btnS", id="btnS{{this.id}}" hidden>
-        </form>
 
-        
+        <a class="btn btn-warning" name="btnE" id="btnE{{this.id}}">Editar</a>
         
       </div>
       <form action="/carros/deleta" method="POST" class='p-1' >
