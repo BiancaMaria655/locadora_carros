@@ -1,0 +1,40 @@
+<form class="row g-3" action="/cliente/atualizar" method="post">
+  <div class="col-12">
+    <input type="hidden" name="user_type" value="CLIENT">
+    <input type="hidden" name="id" value="{{customer.id}}" />
+    <label for="name" class="form-label">Nome completo</label>
+    <input type="text" class="form-control" name="name" value="{{customer.name}}" required>
+  </div>
+  <div class="col-md-6">
+    <label for="cpf" class="form-label">CPF</label>
+    <input type="text" onkeypress="$(this).mask('000.000.000-00');" class="form-control" name="cpf" id="cpf" value="{{customer.cpf}}" onblur="validarCPF(this)"  required>
+  </div>
+  <div class="col-md-6">
+    <label for="cnh" class="form-label">CNH</label>
+    <input type="text" onkeypress="$(this).mask('00000000000')" class="form-control" name="cnh" id="cnh" value="{{customer.cnh}}" onblur="validarCNH(this)" required>   
+  </div>
+  <div class="col-12">
+    <label for="address" class="form-label">Endereço completo</label>
+    <input type="text" class="form-control" name="address" value="{{customer.address}}" required>
+  </div>
+  <div class="col-md-6">
+    <label for="phone" class="form-label">Telefone</label>
+    <input type="tel" onkeypress="$(this).mask('(00) 00000-0000')" class="form-control" name="phone" value="{{customer.phone}}" required>
+  </div>
+  <div class="col-md-6">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" value="{{customer.email}}" required>
+  </div>
+  <div class="col-md-6">
+    <label for="password" class="form-label">Senha</label>
+    <input type="password" class="form-control" name="password" id="password" required value="{{customer.password}}" onchange="validatePassword()">
+  </div>
+  <div class="col-md-6">
+    <label for="confirmPassword" class="form-label">Confirmar senha</label>
+    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required onchange="validatePassword()">
+  </div>
+  
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Atualizar</button>
+  </div>
+</form>

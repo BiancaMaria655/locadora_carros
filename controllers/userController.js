@@ -18,7 +18,7 @@ module.exports = class userController {
         const user = await User.findOne({ where: { email: email } });
         if (!user) {
             req.flash('message', 'Usuário não encontrado');
-            res.render('users/customer/customerRegistration');
+            res.render('users/customer/Registration');
         } else if (password != user.password) {
             req.flash('message', 'Senha inválida!');
             res.render('users/login');
@@ -59,8 +59,14 @@ module.exports = class userController {
     }
 
     //dashboard dos clientes
-    static customerDashboard(req, res) {
-        res.render('users/customer/customerDashboard');
+    static async customerDashboard(req, res) {
+        try {
+            const id = req.session.userid;
+            const customer = await User.findOne({ where: { id: id }, raw: true })
+            res.render('users/customer/Dashboard', { customer });
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     //lista de todos os clientes
@@ -76,8 +82,8 @@ module.exports = class userController {
     //tela de editar cliente
     static async updateCustomer(req, res) {
         try {
-            const id = req.params.id;
-            const customer = await User.findAll({ where: { id: id }, raw: true });
+            const id = req.session.userid
+            const customer = await User.findOne({ where: { id: id }, raw: true });
             res.render('users/customer/updateCustomer', { customer });
         } catch (error) {
             console.log(error);
@@ -87,7 +93,7 @@ module.exports = class userController {
     //salvar edição do cliente
     static async updateCustomerSave(req, res) {
         try {
-            const id = req.body.id;
+            const id = req.session.userid
             const customer = {
                 name: req.body.name,
                 email: req.body.email,
@@ -107,6 +113,7 @@ module.exports = class userController {
             console.log(error);
         }
     }
+
     static async removeCustomer(req, res) {
         try {
             const id = req.body.id;
