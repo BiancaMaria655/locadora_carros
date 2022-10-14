@@ -1,0 +1,12 @@
+#error {
+    color: red;
+    display: none/* Esconde o span */
+}
+
+#error.visible {
+    display: inline/* Exibe o span somente se o input for inválido. */
+}
+
+input.invalid {
+    border-color: red;
+}

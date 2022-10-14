@@ -10,7 +10,9 @@
   </div>
   <div class="col-md-6">
     <label for="cnh" class="form-label">CNH</label>
-    <input type="text" onkeypress="$(this).mask('00000000000')" class="form-control" name="cnh" required>
+    <span role="alert" id="error" aria-hidden="true">cnh inválido.</span>
+    <input type="text" onkeypress="$(this).mask('00000000000')" class="form-control" name="cnh" id="cnh" onblur="validarCNH(this)" required>
+    
   </div>
   <div class="col-12">
     <label for="address" class="form-label">Endereço completo</label>
@@ -26,7 +28,11 @@
   </div>
   <div class="col-md-6">
     <label for="password" class="form-label">Senha</label>
-    <input type="password" class="form-control" name="password" required>
+    <input type="password" class="form-control" name="password" id="password" required onchange="validatePassword()">
+  </div>
+  <div class="col-md-6">
+    <label for="confirmPassword" class="form-label">Confirmar senha</label>
+    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required onchange="validatePassword()">
   </div>
   
   <div class="col-12">
