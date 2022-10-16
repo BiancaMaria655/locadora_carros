@@ -1,4 +1,5 @@
-<form action="/admin/add" method="POST" id="formAdmin" class="d-flex p-2 border">
+<form action="/admin/add" method="POST" id="formAdmin" class="p-2 border ">
+    <h2 id="formH2">Cadastro de Admin</h2>
     <div class="row ">
       <div class="mb-3 col-auto">
         <label for="name" class="form-label">Nome</label>
@@ -23,10 +24,15 @@
         <input type="text" name="user_type" class="form-control" id="formType" required>
       </div>
       <div class="col-auto">
-        <label for="name" class="form-label">.</label>
+        <label for="name" class="form-label d-flex">.</label>
         <input type="text" value="" name="id" id="updateFormId" hidden>
         <input type="submit" value="Cadastrar" class="form-control btn btn-primary" id="createForm">
-        <input type="submit" value="Salvar" class="form-control btn btn-success" id="updateForm" hidden>
+        <input type="submit" value="Atualizar" class="form-control btn btn-success" id="updateForm" hidden>
+        
+      </div>
+      <div class="col-auto">
+        <label for="name" class="form-label d-flex">.</label>
+        <a onclick="cancelButton()" type="submit" value="Salvar" class="form-control btn btn-danger" id="cancelUpdate" hidden>Cancelar</a>
       </div>
     </div>
 

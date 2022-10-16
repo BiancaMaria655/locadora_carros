@@ -27,7 +27,7 @@ const Car = db.define('cars', {
     type: Sequelize.INTEGER,
     allowNull: false,
     notEmpty: {
-        msg: 'Ano não pode ser em branco!'
+      msg: 'Ano não pode ser em branco!'
     }
   },
   fabricante: {
@@ -38,11 +38,10 @@ const Car = db.define('cars', {
     }
   },
   valor_loc: {
-    type: Sequelize.DECIMAL(10,2),
+    type: Sequelize.DECIMAL(10, 2),
     allowNull: false,
     notEmpty: {
-        msg: 'Valore da locação não pode ser em branco!'
-    
+      msg: 'Valore da locação não pode ser em branco!'
     }
   },
   cor: {

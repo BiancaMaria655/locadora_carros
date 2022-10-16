@@ -181,4 +181,21 @@ module.exports = class userController {
             res.status(400).redirect('/admin/dashboard');
         }
     }
+
+    static async deleteAdmin(req,res){
+        try{
+            const id = req.body.id
+
+            await User.destroy({where:{id:id}});
+
+            req.flash('success', 'Deletetado com Sucesso!')
+        }
+        catch (error){
+            console.log(err)
+            
+        }
+        finally{
+            res.redirect('/admin/dashboard')
+        }
+    }
 };

@@ -6,4 +6,5 @@ router.get('/dashboard', UserController.adminDashboard);
 router.post('/add', UserController.newAdminSave);
 
 router.post('/editar', UserController.updateAdmin);
+router.post('/excluir', UserController.deleteAdmin)
 module.exports = router;

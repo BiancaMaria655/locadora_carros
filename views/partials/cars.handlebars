@@ -1,0 +1,22 @@
+<tr>
+  <th scope="row">{{this.id}}</th>
+  <td>{{this.nome}}</td>
+  <td>{{this.modelo}}</td>
+  <td>{{this.ano}}</td>
+  <td>{{this.fabricante}}</td>
+  <td>{{this.valor_loc}}</td>
+  <td>{{this.cor}}</td>
+  <td>{{this.adicionais}}</td>
+  <td>{{this.disponivel}}</td>
+
+  <td>
+    <div class="buttons d-flex">
+      <div class="pe-1">
+        <a  class="btn btn-warning" name="btnE" id="btnE{{this.id}}">Editar</a>
+      </div>
+      <form action="/admin/excluir" method="POST" class='' >
+        <input type="text" name="id" value="{{this.id}}", hidden>
+        <input type="submit" value="Excluir" class="btn btn-danger" >
+      </form>
+  </td>
+</tr>
