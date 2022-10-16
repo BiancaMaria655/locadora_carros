@@ -2,15 +2,18 @@
 
   <div class="users p-2">
     {{#if success}}
-      <div class="aler alert-success mb-3">
-        {{success}}
+      
+      <div class="aler alert-success mb-3 rounded">
+          <div class="p-1">
+            <i class="fa-solid fa-circle-check"></i>
+            {{success}}
+          </div>
       </div>
-
     {{/if}}
     
       {{>formAdmin}}
 
-    <div class="border p-2">
+    <div class="border rounded p-2">
       {{#if users}}
       <table class="table table-bordered">
         <div class=" row justify-content-start table-bordered">
@@ -46,7 +49,7 @@
   </div>
 
   <div class="cars p-2">
-    <div class="border p-2">
+    <div class="border rounded p-2">
       {{#if cars}}
       <table class="table table-bordered">
           <thead>

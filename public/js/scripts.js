@@ -37,7 +37,7 @@ function editFields(list) {
     formPass.setAttribute('value', password.innerHTML);
     formCpf.setAttribute('value', cpf.innerHTML);
     formType.setAttribute('value', type.innerHTML);
-    formId.setAttribute('value', realId.getAttribute('name'));
+    formId.setAttribute('value', realId.innerHTML);
 
     createButton.setAttribute('hidden', true);
     uptadeButton.removeAttribute('hidden');

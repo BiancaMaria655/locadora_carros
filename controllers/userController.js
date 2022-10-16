@@ -178,7 +178,7 @@ module.exports = class userController {
             });
         } catch (error) {
             console.log(error);
-            res.status(400).redirect('/admin/dashboard');
+            res.redirect('/admin/dashboard');
         }
     }
 
