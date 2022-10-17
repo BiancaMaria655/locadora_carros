@@ -1,0 +1,27 @@
+<h1>Editando Locação do Cliente: {{loc.nome}}</h1>
+
+<form action="/loc/edit" method="post" class="row g-3">
+
+  <div class="col-md-6">
+    <input type="hidden" name="id" value="{{loc.id}}" />
+
+    <label for="nome" class="form-label">Nome Locatario</label>
+    <input type="text" name="nome" class="form-control" value="{{loc.nome}}"/>
+  </div>
+  <div class="col-md-6">
+    <label for="veiculo" class="form-label">Veiculo</label>
+    <input type="text" name="veiculo" class="form-control" value="{{loc.veiculo}}"/>
+  </div>
+  <div class="col-md-6">
+    <label for="dataIn" class="form-label">Data de Inicio da Locação</label>
+    <input type="text" name="dataIn" class="form-control" value="{{loc.dataIn}}"/>
+  </div>
+  <div class="col-md-6">
+    <label for="dataFim" class="form-label">Data Final da Locação</label>
+    <input type="text" name="dataFim" class="form-control" value="{{loc.dataFim}}"/>
+  </div>
+  <div class="col-md-6">
+    <input type="submit" class="btn btn-primary" value="Atualizar" />
+    </select>
+  </div>
+</form>

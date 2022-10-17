@@ -1,0 +1,26 @@
+<h1>Nova Locação</h1>
+
+<form class="row g-3" action="/loc/add" method="post">
+
+    <div class="col-md-6">
+      <input type="hidden" name="disponivel" value="Sim">
+      <label for="nome" class="form-label">Nome Locatario</label>
+      <input type="text" name="nome" class="form-control" required>
+    </div>  
+    <div class="col-md-6">
+      <label for="veiculo" class="form-label">Veiculo</label>
+      <input type="text" name="veiculo" class="form-control" required>
+    </div>  
+    <div class="col-md-6">
+      <label for="dataIn" class="form-label">Data de Inicio da Locação</label>
+      <input type="date" name="dataIn" class="form-control" required>
+    </div>  
+    <div class="col-md-6">
+      <label for="dataFim" class="form-label">Data Final da Locação</label>
+      <input type="date" name="dataFim" class="form-control" required>
+    </div> 
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </div>
+  
+</form>

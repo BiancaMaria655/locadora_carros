@@ -10,6 +10,7 @@ const conn = require('./models/Database');
 const customerRouter = require('./routes/customerRouter');
 const admRouter = require('./routes/admRouter');
 const Car = require('./routes/carRouter');
+const Loc = require('./routes/LocRouter');
 
 
 //adicionando partials
@@ -83,6 +84,7 @@ app.use((req, res, next) => {
 app.use('/cliente', customerRouter);
 app.use('/admin', admRouter);
 app.use('/car', Car);
+app.use('/loc', Loc);
 
 
 
