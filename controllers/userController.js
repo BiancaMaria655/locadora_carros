@@ -9,7 +9,7 @@ module.exports = class userController {
         //logout
     static logout(req, res) {
             req.session.destroy();
-            res.redirect('/');
+            res.redirect('/cliente/login');
         }
         //realizar login
     static async loginSend(req, res) {
@@ -114,13 +114,25 @@ module.exports = class userController {
         }
     }
 
+    //modal de confirmação para remover cliente
+    static async removeCustomerConfirmacao(req, res) {
+        try {
+            const id = req.session.userid
+            const customer = await User.findOne({ where: { id: id }, raw: true });
+            res.render('users/customer/remove', { customer });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    //apagar cadastro
     static async removeCustomer(req, res) {
         try {
-            const id = req.body.id;
+            const id = req.session.userid;
             await User.destroy({ where: { id: id } });
             req.flash('O seu cadastro foi apagado com sucesso!');
             req.session.save(() => {
-                res.redirect('/cliente/home');
+                res.redirect('/cliente/login');
             });
         } catch (error) {
             console.log(error);
@@ -182,19 +194,17 @@ module.exports = class userController {
         }
     }
 
-    static async deleteAdmin(req,res){
-        try{
+    static async deleteAdmin(req, res) {
+        try {
             const id = req.body.id
 
-            await User.destroy({where:{id:id}});
+            await User.destroy({ where: { id: id } });
 
             req.flash('success', 'Deletetado com Sucesso!')
-        }
-        catch (error){
+        } catch (error) {
             console.log(err)
-            
-        }
-        finally{
+
+        } finally {
             res.redirect('/admin/dashboard')
         }
     }
