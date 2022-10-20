@@ -1,5 +1,19 @@
-<form action="clientes/login" method="post">
-  <input type="text" name="email">
-  <input type="text" name="password">
-  <input type="submit">
-</form>
+<div class="auth-container">
+  <h2>Entrar</h2>
+  <form action="/cliente/login" method="POST">
+    <div class="row align-items-start">
+      <div class="col-md-4">
+        <label for="email" class="form-label">E-mail:</label>
+        <input type="email" name="email" class="form-control" />
+      </div>
+    </div>
+    <div class="row align-items-start">
+      <div class="col-md-4">
+        <label for="senha" class="form-label">Senha:</label>
+        <input type="password" name="password" class="form-control" />
+      </div>
+    </div>
+    <input type="submit" value="Entrar">
+    <p>Não tem conta? <a href="/cliente/cadastro">Clique aqui</a></p>
+  </form>
+</div>
