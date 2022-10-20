@@ -83,7 +83,7 @@ app.use((req, res, next) => {
 // rotas
 app.use('/cliente', customerRouter);
 app.use('/admin', admRouter);
-app.use('/car', Car);
+app.use('/carro', Car);
 app.use('/loc', Loc);
 
 
