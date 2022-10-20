@@ -1,0 +1,55 @@
+<form action="/admin/add" method="POST" id="formAdmin" class="p-2 border rounded ">
+    <h2 id="formH2">Cadastro de Veículos</h2>
+    <div class="row">
+      <div class="mb-3 col-auto">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" name="nome" class="form-control" id="formNomeCarro" required>
+        
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="modelo" class="form-label">Modelo</label>
+        <input type="text" name="modelo" class="form-control" id="formModelo" required>
+        
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="ano" class="form-label">Ano</label>
+        <input type="number" name="ano" class="form-control" id="formAno" required>
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="fabricante" class="form-label">Fabricante</label>
+        <input type="text" name="fabricante" class="form-control" id="formFabricante" required>
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="valor" class="form-label">Valor</label>
+        <input type="number" name="valor" class="form-control" id="formValor" required>
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="cor" class="form-label">Cor</label>
+        <input type="text" name="cor" class="form-control" id="formCor" required>
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="adicionais" class="form-label">Adicionais</label>
+        <input type="text" name="adicionais" class="form-control" id="formAdicionais" required>
+      </div>
+      <div class="mb-3 col-auto">
+        <label for="disponivel" class="form-label">Cor</label>
+        <input type="text" name="disponivel" class="form-control" id="formDisponivel" required>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-auto">
+        
+        <input type="text" value="" name="id" id="updateFormId" hidden>
+        <input type="submit" value="Cadastrar" class="form-control btn btn-primary" id="createForm">
+        <input type="submit" value="Atualizar" class="form-control btn btn-success" id="updateForm" hidden>
+        
+      </div>
+      <div class="col-auto">
+        
+        <a onclick="cancelButton()" type="submit" value="Salvar" class="form-control btn btn-danger " id="cancelUpdate" hidden>Cancelar</a>
+      </div>
+    </div>
+
+</form>
+  

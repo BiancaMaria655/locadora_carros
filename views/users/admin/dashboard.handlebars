@@ -1,85 +1,161 @@
-<div class="dashboard d-flex">
-
-  <div class="users p-2">
-    {{#if success}}
-      
+<div class="infos">
+  {{#if success}}
+    <script>
+      $(document).ready(function(){
+        $('.toast').toast('show');
+      });
+    </script>
+    <div class="toast text-white bg-success position-absolute bottom-0" data-autohide="true" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="fa-solid fa-circle-check rounded me-2 text-green"></i>
+        <strong class="me-auto"> Info</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        {{success}}
+      </div>
+    </div>
+    <!--
       <div class="aler alert-success mb-3 rounded">
           <div class="p-1">
             <i class="fa-solid fa-circle-check"></i>
             {{success}}
           </div>
       </div>
-    {{/if}}
+    -->
     
-      {{>formAdmin}}
-
-    <div class="border rounded p-2">
-      {{#if users}}
-      <table class="table table-bordered">
-        <div class=" row justify-content-start table-bordered">
-
-          <thead class="table-bordered">
-            <th scope="col"><div class="col"><label for="">#</label></div></th>
-            <th scope="col"><div class="col"><label for="">Nome</label></div></th>
-            <th scope="col"><div class="col"><label for="">Email</label></div></th>
-            <th scope="col"><div class="col"><label for="">Senha</label></div></th>
-            <th scope="col"><div class="col"><label for="">CPF</label></div></th>
-            <th scope="col"><div class="col"><label for="">Tipo</label></div></th>
-            <th scope="col"><div class="col"><label for="">Ações</label></div></th>
-          </thead>
-
-
-
-        </div>  
+  {{/if}}
+</div>
+<div class="adminTools d-flex">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       
-    {{/if}}
-        <tbody>
-
-          {{#each users}}
-            <div id="adminList">
-              {{>admin}}
-
-            </div>
+      <span class="fs-4">AdminTools</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page">
           
-          {{/each}}
-        </tbody>
-      </table>
+          Administradores
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          
+          Locações
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          
+          Veiculos
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+         
+          Clientes
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>mdo</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
     </div>
-  
   </div>
+  <div class="dashboard container">
+      
+    <div class="users p-2">
+      
+      {{>formAdmin}}
+      <div class="border rounded p-2">
+        {{#if users}}
+        <table class="table table-bordered">
+          <div class=" row justify-content-start table-bordered">
 
-  <div class="cars p-2">
-    <div class="border rounded p-2">
-      {{#if cars}}
-      <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Modelo</th>
-              <th scope="col">Ano</th>
-              <th scope="col">Fabricante</th>
-              <th scope="col">Valor</th>
-              <th scope="col">Cor</th>
-              <th scope="col">Adicionais</th>
-              <th scope="col">Disponivel</th>
-              <th scope="col">Ações</th>
-              
+            <thead class="table-bordered">
+              <th scope="col"><div class="col"><label for="">#</label></div></th>
+              <th scope="col"><div class="col"><label for="">Nome</label></div></th>
+              <th scope="col"><div class="col"><label for="">Email</label></div></th>
+              <th scope="col"><div class="col"><label for="">Senha</label></div></th>
+              <th scope="col"><div class="col"><label for="">CPF</label></div></th>
+              <th scope="col"><div class="col"><label for="">Tipo</label></div></th>
+              <th scope="col"><div class="col"><label for="">Ações</label></div></th>
+            </thead>
 
-            </tr>
-            
-          </thead>
+
+
+          </div>  
         
       {{/if}}
-        <tbody>
+          <tbody>
 
-          {{#each cars}}
+            {{#each users}}
+              <div id="adminList">
+                {{>admin}}
+
+              </div>
+            
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
+
+    <div class="cars p-2">
+
+      {{>formCars}}
+      <div class="border rounded p-2">
+        {{#if cars}}
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Ano</th>
+                <th scope="col">Fabricante</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Cor</th>
+                <th scope="col">Adicionais</th>
+                <th scope="col">Disponivel</th>
+                <th scope="col">Ações</th>
+                
+
+              </tr>
+              
+            </thead>
           
-              {{>cars}}
-          
-          {{/each}}
-        </tbody>
-      </table>
+        {{/if}}
+          <tbody>
+
+            {{#each cars}}
+            
+                {{>cars}}
+            
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+

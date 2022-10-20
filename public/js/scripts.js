@@ -1,3 +1,8 @@
+function adminToolsNav(btnId){
+    var btnCall = document.getElementById(btnId)
+
+    var navLinks = document.getElementsByClassName('nav-link')
+}
 function editFields(list) {
     var el = document.getElementById(list);
     //let elId = el.addEventListener('click', function (e) {});
@@ -42,6 +47,7 @@ function editFields(list) {
         createButton.setAttribute('hidden', true);
         uptadeButton.removeAttribute('hidden');
         cancelBtn.removeAttribute('hidden');
+
     }
 }
 
@@ -49,6 +55,13 @@ function cancelButton() {
     var cancelBtn = document.getElementById('cancelUpdate');
     var uptadeButton = document.getElementById('updateForm');
     var createButton = document.getElementById('createForm');
+
+    var formName = document.getElementById('formName');
+    var formEmail = document.getElementById('formEmail');
+    var formPass = document.getElementById('formPass');
+    var formCpf = document.getElementById('formCpf');
+    var formType = document.getElementById('formType');
+    var formId = document.getElementById('updateFormId');
     var form = document.getElementById('formAdmin');
     var formH2 = document.getElementById('formH2');
 
@@ -57,6 +70,15 @@ function cancelButton() {
     cancelBtn.toggleAttribute('hidden');
     createButton.toggleAttribute('hidden');
     uptadeButton.toggleAttribute('hidden');
+
+    formName.setAttribute('value', '');
+    formEmail.setAttribute('value', '');
+    formPass.setAttribute('value', '');
+    formCpf.setAttribute('value', '');
+    formType.setAttribute('value', '');
+    formId.setAttribute('value', '');
+
+
 
 }
 
