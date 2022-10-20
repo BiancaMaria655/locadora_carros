@@ -6,7 +6,7 @@ module.exports = class CarController{
     //tela para cadastrar veículo
     static async newCar(req, res){
         try {
-         res.render('car/addCar')        
+         res.render('carro/addCar')        
         } catch (error) {
          console.log(error)
         }
@@ -26,7 +26,7 @@ module.exports = class CarController{
                 adicionais: req.body.adicionais,                
             }
             await Car.create(car)
-            res.redirect('/car/allCars')
+            res.redirect('/carro/allCars')
 
 
         } catch (error) {
@@ -39,7 +39,7 @@ module.exports = class CarController{
         try {
             //por enquanto exibe sem pedir login
             const  cars = await Car.findAll({ raw: true })
-            res.render('car/allCars', { cars })           
+            res.render('carro/allCars', { cars })           
         } catch (error) {
             console.log(error)
         }
@@ -53,7 +53,7 @@ module.exports = class CarController{
             // const user = await User.findOne({ where: { id: id }, raw: true })
             const id = req.params.id
             const car = await Car.findOne( { where: { id: id }, raw: true })
-            res.render('car/edit', { car })
+            res.render('carro/edit', { car })
         } catch (error) {
             console.log(error)
         }
