@@ -20,8 +20,8 @@
       <td>{{this.dataFim}}</td>
       <td>
         <div class="col-md-4 actions">
-        <a href="/loc/edit/{{this.id}}">Editar</a>
-        <form action="/loc/removeLoc" method="post">
+        <a href="/locacao/editar/{{this.id}}">Editar</a>
+        <form action="/locacao/remover" method="post">
           <input type="hidden" name="id" value="{{this.id}}">
           <button type="submit" class="btn-delete">Remover</button>
         </form>

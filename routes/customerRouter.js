@@ -3,9 +3,6 @@ const router = express.Router();
 
 const UserController = require('../controllers/userController');
 
-router.get('/login', UserController.login);
-router.post('/login', UserController.loginSend);
-router.get('/logout', UserController.logout);
 router.get('/cadastro', UserController.newCustomer);
 router.post('/cadastro', UserController.newCustomerSave);
 router.get('/atualizar/:id', UserController.updateCustomer);

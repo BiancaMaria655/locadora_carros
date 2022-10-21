@@ -3,7 +3,7 @@ const router = express.Router();
 const AdminController = require('../controllers/adminController');
 
 router.get('/dashboard', AdminController.adminDashboard);
-router.post('/add', AdminController.newAdminSave);
+router.post('/adicionar', AdminController.newAdminSave);
 
 router.post('/editar', AdminController.updateAdmin);
 router.post('/excluir', AdminController.deleteAdmin);

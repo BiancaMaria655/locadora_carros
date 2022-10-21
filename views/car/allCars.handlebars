@@ -29,8 +29,8 @@
       <td>{{this.adicionais}}</td>
       <td>
         <div class="col-md-4 actions">
-        <a href="/carro/edit/{{this.id}}">Editar</a>
-        <form action="/carro/removeCar" method="post">
+        <a href="/carro/editar/{{this.id}}">Editar</a>
+        <form action="/carro/remover" method="post">
           <input type="hidden" name="id" value="{{this.id}}">
           <button type="submit" class="btn-delete">Remover</button>
         </form>

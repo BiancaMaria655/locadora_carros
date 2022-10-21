@@ -2,18 +2,18 @@ const Car = require('../models/Car')
 const User = require('../models/User')
 
 
-module.exports = class CarController{
+module.exports = class CarController {
     //tela para cadastrar veículo
-    static async newCar(req, res){
+    static async newCar(req, res) {
         try {
-         res.render('carro/addCar')        
+            res.render('car/addCar')
         } catch (error) {
-         console.log(error)
+            console.log(error)
         }
-     }
-    
-     // salvar registro do veículo
-     static async newCarSave(req, res){
+    }
+
+    // salvar registro do veículo
+    static async newCarSave(req, res) {
         try {
             const car = {
                 nome: req.body.nome,
@@ -23,10 +23,10 @@ module.exports = class CarController{
                 valor_loc: req.body.valor_loc,
                 cor: req.body.cor,
                 disponivel: req.body.disponivel,
-                adicionais: req.body.adicionais,                
+                adicionais: req.body.adicionais,
             }
             await Car.create(car)
-            res.redirect('/carro/allCars')
+            res.redirect('/carro/todos')
 
 
         } catch (error) {
@@ -35,32 +35,32 @@ module.exports = class CarController{
     }
 
     //lista de todos os veículos
-    static async allCars(req, res){
+    static async allCars(req, res) {
         try {
             //por enquanto exibe sem pedir login
-            const  cars = await Car.findAll({ raw: true })
-            res.render('carro/allCars', { cars })           
+            const cars = await Car.findAll({ raw: true })
+            res.render('car/allCars', { cars })
         } catch (error) {
             console.log(error)
         }
     }
 
     //tela de editar veículo
-    static async updateCar(req, res){
+    static async updateCar(req, res) {
         try {
             // const id = req.session.userid
             // const car = await Car.findOne( { where: { UserId: id }, raw: true })
             // const user = await User.findOne({ where: { id: id }, raw: true })
             const id = req.params.id
-            const car = await Car.findOne( { where: { id: id }, raw: true })
-            res.render('carro/edit', { car })
+            const car = await Car.findOne({ where: { id: id }, raw: true })
+            res.render('car/edit', { car })
         } catch (error) {
             console.log(error)
         }
     }
 
     //salvar alterações dos dados do veículo
-    static async updateCarSave(req, res){
+    static async updateCarSave(req, res) {
         try {
             const id = req.body.id
             const car = {
@@ -71,10 +71,10 @@ module.exports = class CarController{
                 valor_loc: req.body.valor_loc,
                 cor: req.body.cor,
                 disponivel: req.body.disponivel,
-                adicionais: req.body.adicionais, 
+                adicionais: req.body.adicionais,
             }
-            await Car.update(car, { where: { id : id }})
-            res.redirect('allCars')
+            await Car.update(car, { where: { id: id } })
+            res.redirect('todos')
 
 
         } catch (error) {
@@ -83,11 +83,11 @@ module.exports = class CarController{
     }
 
     // remover veículo
-    static async removeCar(req, res){
+    static async removeCar(req, res) {
         try {
             const id = req.body.id
-            await Car.destroy({ where: { id: id }})
-            res.redirect('allCars')
+            await Car.destroy({ where: { id: id } })
+            res.redirect('todos')
         } catch (error) {
             console.log(error)
         }

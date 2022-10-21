@@ -9,6 +9,7 @@ const FileStore = require('session-file-store')(session);
 const conn = require('./models/Database');
 const customerRouter = require('./routes/customerRouter');
 const admRouter = require('./routes/admRouter');
+const Auth = require('./routes/authRouter')
 const Car = require('./routes/carRouter');
 const Loc = require('./routes/LocRouter');
 
@@ -84,7 +85,8 @@ app.use((req, res, next) => {
 app.use('/cliente', customerRouter);
 app.use('/admin', admRouter);
 app.use('/carro', Car);
-app.use('/loc', Loc);
+app.use('/locacao', Loc);
+app.use('/usuario', Auth);
 
 
 
