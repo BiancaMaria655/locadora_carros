@@ -1,0 +1,33 @@
+<div class="title">
+    <h1>Todas as Locações Realizadas</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nome Locatario</th>
+      <th scope="col">Veiculo</th>
+      <th scope="col">Data de Inicio da Locação</th>
+      <th scope="col">Data Final da Locação</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each loc}}
+    <tr>      
+      <td>{{this.nome}}</td>
+      <td>{{this.veiculo}}</td>
+      <td>{{this.dataIn}}</td>
+      <td>{{this.dataFim}}</td>
+      <td>
+        <div class="col-md-4 actions">
+        <a href="/loc/edit/{{this.id}}">Editar</a>
+        <form action="/loc/removeLoc" method="post">
+          <input type="hidden" name="id" value="{{this.id}}">
+          <button type="submit" class="btn-delete">Remover</button>
+        </form>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
