@@ -59,6 +59,10 @@ const Car = db.define('cars', {
   adicionais: {
     type: Sequelize.STRING,
     allowNull: true
+  },
+  imgName: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 });
 

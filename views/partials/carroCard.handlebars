@@ -1,0 +1,15 @@
+<div class="card">
+  <img src="/images/{{this.imgName}}.png" alt="" class="card-img-top" style="width: 18rem; ">
+  <div class="card-body">
+    <h4 class="card-title">{{this.nome}} {{this.modelo}}</h4>
+    
+    <h6 class="card-text">Detalhes:</h6>
+    <div>
+      <p>Fabricante: {{this.fabricante}} | Ano: {{this.ano}}</p>
+      <p>Cor: {{this.cor}}</p>
+      <p>Disponivel: {{this.disponivel}}</p>
+      <h3 class="" style="color: green;">Valor: {{this.valor_loc}}</h3>
+    </div>
+    <a href="/locacao/adicionar/{{this.id}}" class="btn btn-success">Alugar</a>
+  </div>
+</div>

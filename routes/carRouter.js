@@ -8,5 +8,5 @@ router.get('/todos', CarController.allCars)
 router.get('/editar/:id', CarController.updateCar)
 router.post('/editar', CarController.updateCarSave)
 router.post('/remover', CarController.removeCar)
-
+router.get('/frota', CarController.buscaFrota)
 module.exports = router
