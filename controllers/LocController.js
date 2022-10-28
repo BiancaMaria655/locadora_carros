@@ -1,12 +1,17 @@
 const Loc = require('../models/Loc')
 const User = require('../models/User')
+const Car = require('../models/Car')
+const dif = require('date-fns/differenceInDays')
+var app = require('express');
 
 
 module.exports = class LocController {
     //tela para cadastrar locações de veículo
     static async newLoc(req, res) {
             try {
-                res.render('loc/addLoc')
+                const id = req.params.id
+                const car = await Car.findOne({ where: { id: id }, raw: true })
+                res.render('loc/addLoc', {car})
             } catch (error) {
                 console.log(error)
             }
@@ -14,11 +19,19 @@ module.exports = class LocController {
         // salvar registro de locação
     static async newLocSave(req, res) {
             try {
+                const id = req.params.id
+                const car = await Car.findOne({ where: { id: id }, raw: true })
+                const dias = dif(
+                    new Date(req.body.dataFim),
+                    new Date(req.body.dataIn)
+                    )
+                const valor = dias*car.valor_loc
                 const loc = {
                     nome: req.body.nome,
                     veiculo: req.body.veiculo,
                     dataIn: req.body.dataIn,
                     dataFim: req.body.dataFim,
+                    valor,
                 }
                 await Loc.create(loc)
                 res.redirect('/locacao/todas')
@@ -48,12 +61,12 @@ module.exports = class LocController {
         //salvar alterações
     static async updateLocSave(req, res) {
             try {
-                const id = req.body.id
                 const loc = {
                     nome: req.body.nome,
                     veiculo: req.body.veiculo,
                     dataIn: req.body.dataIn,
                     dataFim: req.body.dataFim,
+                    dias,
                 }
                 await Loc.update(loc, { where: { id: id } })
                 res.redirect('/locacao/todas')

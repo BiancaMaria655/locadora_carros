@@ -1,6 +1,6 @@
 <h1>Nova Locação</h1>
 
-<form class="row g-3" action="/locacao/adicionar" method="post">
+<form class="row g-3" action="/locacao/adicionar/{{car.id}}" method="post">
 
     <div class="col-md-6">
       <input type="hidden" name="disponivel" value="Sim">
@@ -9,7 +9,7 @@
     </div>  
     <div class="col-md-6">
       <label for="veiculo" class="form-label">Veiculo</label>
-      <input type="text" name="veiculo" class="form-control" required>
+      <input type="text" name="veiculo" class="form-control" value="{{car.nome}}" readonly=""/>
     </div>  
     <div class="col-md-6">
       <label for="dataIn" class="form-label">Data de Inicio da Locação</label>

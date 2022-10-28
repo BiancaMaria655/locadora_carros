@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const LocController = require('../controllers/LocController')
 
-router.get('/adicionar', LocController.newLoc)
-router.post('/adicionar', LocController.newLocSave)
+
+
+router.get('/adicionar/:id', LocController.newLoc)
+router.post('/adicionar/:id', LocController.newLocSave)
 router.get('/todas', LocController.allLoc)
 router.get('/editar/:id', LocController.updateLoc)
 router.post('/editar', LocController.updateLocSave)
