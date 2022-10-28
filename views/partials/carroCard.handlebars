@@ -1,5 +1,10 @@
 <div class="card">
+  {{#if this.imgName}}
   <img src="/images/{{this.imgName}}.png" alt="" class="card-img-top" style="width: 18rem; ">
+  {{else}}
+  <img src="/images/null.png" alt="" class="card-img-top" style="width: 18rem; ">
+  {{/if}}
+  
   <div class="card-body">
     <h4 class="card-title">{{this.nome}} {{this.modelo}}</h4>
     

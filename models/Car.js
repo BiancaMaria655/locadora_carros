@@ -62,7 +62,8 @@ const Car = db.define('cars', {
   },
   imgName: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: true,
+    notEmpty: true
   }
 });
 
