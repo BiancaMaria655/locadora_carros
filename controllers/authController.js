@@ -8,7 +8,7 @@ module.exports = class authController {
         //logout
     static logout(req, res) {
             req.session.destroy();
-            res.redirect('/cliente/login');
+            res.redirect('/usuario/login');
         }
         //realizar login
     static async loginSend(req, res) {
@@ -24,8 +24,15 @@ module.exports = class authController {
         }
         req.session.userid = user.id;
         req.flash('message', 'Usuário logado com sucesso');
-        req.session.save(() => {
-            res.redirect('/cliente/dashboard');
-        });
+        if (user.user_type == "CLIENT") {
+            req.session.save(() => {
+                res.redirect('/cliente/dashboard');
+            });
+        }
+        if (user.user_type == "ADM") {
+            req.session.save(() => {
+                res.redirect('/admin/dashboard');
+            });
+        }
     }
 }

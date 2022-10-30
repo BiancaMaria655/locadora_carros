@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const UserController = require('../controllers/userController');
+const UserController = require('../controllers/customerController');
 
 router.get('/cadastro', UserController.newCustomer);
 router.post('/cadastro', UserController.newCustomerSave);

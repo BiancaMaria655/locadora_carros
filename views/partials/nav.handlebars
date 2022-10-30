@@ -1,10 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e2c027;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">LocaCars</a>
-    <div class="collapse navbar-collapse" id="">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Início</a>
+          <a class="nav-link active" aria-current="page" href="#">Início</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/carro/frota">Nossa Frota</a>
@@ -12,15 +15,27 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Ranking</a>
         </li>
-
-      </ul>
-      <div class="">
         
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <a href="#" class="btn btn-light btn-success" style="--bs-btn-bg: #e2c027;">
-          <i class="fa-solid fa-user"></i>
-          Entrar</a>
-      </div>
+        {{#if session.userid}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            Sua conta
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/cliente/atualizar/:{{session.userid}}">Atualizar meus dados</a></li>
+            <li><a class="dropdown-item" href="/cliente/apagar">Apagar minha conta</a></li>
+            <li><a class="dropdown-item" href="/usuario/logout">Sair</a></li>
+          </ul>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/usuario/login">Entre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cliente/cadastro">Cadastre-se</a>
+        </li>
+        {{/if}}
+      </ul>
     </div>
   </div>
 </nav>
