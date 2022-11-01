@@ -34,10 +34,6 @@ module.exports = class LocController {
                 const valor = dias*car.valor_loc
                 if(valor==0){
                     const val=car.valor_loc
-                    console.log("Valor = ")
-                    console.log("Valor = ")
-                    console.log("Valor = ")
-                    console.log(val)
                     const loc = {
                         nome: req.body.nome,
                         veiculo: req.body.veiculo,
@@ -48,6 +44,18 @@ module.exports = class LocController {
                         idUser:customer.id,
                     }
                     await Loc.create(loc)
+                    const status = "Não"
+                    const carro = {
+                        nome: car.nome,
+                        modelo: car.modelo,
+                        ano: car.ano,
+                        fabricante: car.fabricante,
+                        valor_loc:car.valor_loc,
+                        cor: car.cor,
+                        disponivel: status,
+                        adicionais: car.adicionais
+                    }
+                    await Car.update(carro, { where: { id: id } })
                     res.redirect('/locacao/todas')
                 }else{
                 const loc = {
@@ -60,6 +68,18 @@ module.exports = class LocController {
                     idUser:customer.id,
                 }
                 await Loc.create(loc)
+                const status = "Não"
+                    const carro = {
+                        nome: car.nome,
+                        modelo: car.modelo,
+                        ano: car.ano,
+                        fabricante: car.fabricante,
+                        valor_loc:car.valor_loc,
+                        cor: car.cor,
+                        disponivel: status,
+                        adicionais: car.adicionais
+                    }
+                await Car.update(carro, { where: { id: id } })
                 res.redirect('/locacao/todas')
             }
             } catch (error) {
@@ -101,24 +121,33 @@ module.exports = class LocController {
                     new Date(req.body.dataFim),
                     new Date(req.body.dataIn)
                     )
-                if(dias==0){
-                    dias = 1
-                    const valor = dias*car.valor_loc
+                const valor = dias*car.valor_loc
+                if(valor==0){
+                    const val = car.valor_loc
+                    const loc = {
+                        nome: req.body.nome,
+                        veiculo: req.body.veiculo,
+                        dataIn: req.body.dataIn,
+                        dataFim: req.body.dataFim,
+                        valor:val,
+                        idCarro:car.id,
+                        idUser: customer.id
+                    }
+                    await Loc.update(loc, { where: { id: id } })
+                    res.redirect('/locacao/todas')
                 }else{
-                    const valor = dias*car.valor_loc
+                    const loc = {
+                        nome: req.body.nome,
+                        veiculo: req.body.veiculo,
+                        dataIn: req.body.dataIn,
+                        dataFim: req.body.dataFim,
+                        valor:valor,
+                        idCarro:car.id,
+                        idUser: customer.id
+                    }
+                    await Loc.update(loc, { where: { id: id } })
+                    res.redirect('/locacao/todas')
                 }
-                const loc = {
-                    nome: req.body.nome,
-                    veiculo: req.body.veiculo,
-                    dataIn: req.body.dataIn,
-                    dataFim: req.body.dataFim,
-                    valor,
-                    idCarro:car.id,
-                    idUser: customer.id
-                }
-
-                await Loc.update(loc, { where: { id: id } })
-                res.redirect('/locacao/todas')
             } catch (error) {
                 console.log(error)
             }
@@ -127,6 +156,21 @@ module.exports = class LocController {
     static async removeLoc(req, res) {
         try {
             const id = req.body.id
+            const locacao = await Loc.findOne({ where: { id: id }, raw: true })
+            const idcar=locacao.idCarro
+            const car = await Car.findOne({ where: { id: idcar }, raw: true })
+            const status = "Sim"
+                    const carro = {
+                        nome: car.nome,
+                        modelo: car.modelo,
+                        ano: car.ano,
+                        fabricante: car.fabricante,
+                        valor_loc:car.valor_loc,
+                        cor: car.cor,
+                        disponivel: status,
+                        adicionais: car.adicionais
+                    }
+                await Car.update(carro, { where: { id: idcar } })
             await Loc.destroy({ where: { id: id } })
             res.redirect('/locacao/todas')
         } catch (error) {
