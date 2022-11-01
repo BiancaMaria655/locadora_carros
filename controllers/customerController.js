@@ -24,7 +24,7 @@ module.exports = class userController {
             await User.create(customer);
             req.flash('Você se cadastrou com sucesso!');
             req.session.save(() => {
-                res.redirect('/cliente/login');
+                res.redirect('/usuario/login');
             });
         } catch (error) {
             console.log(error);

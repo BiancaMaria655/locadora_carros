@@ -50,7 +50,8 @@ const User = db.define('users', {
     },
     cnh: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
+        unique: true
     },
     phone: {
         type: Sequelize.STRING,
