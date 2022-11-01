@@ -4,8 +4,18 @@ const User = require('../models/User');
 module.exports = class CarController {
   //tela para cadastrar veículo
   static async newCar(req, res) {
+    const id = req.session.userid;
+    const user = await User.findOne({ where: { id: id } });
+
     try {
-      res.render('car/addCar');
+      if (user.user_type == "ADM") {
+        res.render('car/addCar');
+      }
+      else {
+        req.flash('message', 'Você precisa ser Administrador para acessar essa página');
+        res.redirect('/cliente/dashboard');
+      }
+      // res.render('car/addCar');
     } catch (error) {
       console.log(error);
     }
