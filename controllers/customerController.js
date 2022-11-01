@@ -21,11 +21,28 @@ module.exports = class userController {
             address: req.body.address
         };
         try {
-            await User.create(customer);
-            req.flash('Você se cadastrou com sucesso!');
-            req.session.save(() => {
-                res.redirect('/usuario/login');
-            });
+            const cpf = await User.findOne({ where: { cpf: customer.cpf }, raw: true });
+            const cnh = await User.findOne({ where: { cnh: customer.cnh }, raw: true });
+            const email = await User.findOne({ where: { email: customer.email }, raw: true })
+            if (cpf) {
+                req.flash('CPF já cadastrado anteriormente. Faça o seu login.');
+                res.redirect('/usuario/login')
+            }
+            if (cnh) {
+                req.flash('CNH já cadastrada anteriormente. Faça o seu login.');
+                res.redirect('/usuario/login')
+            }
+            if (email) {
+                req.flash('Email já cadastrado anteriormente. Faça o seu login.');
+                res.redirect('/usuario/login')
+            } else {
+                await User.create(customer);
+
+                req.flash('Você se cadastrou com sucesso!');
+                req.session.save(() => {
+                    res.redirect('/usuario/login');
+                });
+            }
         } catch (error) {
             console.log(error);
         }
