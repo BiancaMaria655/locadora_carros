@@ -30,7 +30,11 @@
   </div>
   <div class="col-md-6">
     <label for="disponivel" class="form-label">Disponivel</label>
-    <input type="text" name="disponivel" class="form-control" value="{{car.disponivel}}"/>
+    <select class="form-select" aria-label="Default select example" name="disponivel" >
+      <option selected>{{car.disponivel}}</option>
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
   </div>
   <div class="col-md-6">
     <label for="adicionais" class="form-label">Adicionais</label>

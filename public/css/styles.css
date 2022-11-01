@@ -12,3 +12,9 @@
 input.invalid {
   border-color: red;
 }
+
+
+/* Exibição dos veículos */
+.title{
+  text-align: center;
+}
