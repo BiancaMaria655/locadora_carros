@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('./Database');
-const Car = require('./Car')
+const Car = require('./Car');
+const { HasMany } = require('sequelize');
 
 const Loc = db.define('locacao', {
   id: {

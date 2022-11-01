@@ -8,7 +8,7 @@ router.get('/adicionar/:id', LocController.newLoc)
 router.post('/adicionar/:id', LocController.newLocSave)
 router.get('/todas', LocController.allLoc)
 router.get('/editar/:id', LocController.updateLoc)
-router.post('/editar', LocController.updateLocSave)
+router.post('/editar/:id', LocController.updateLocSave)
 router.post('/remover', LocController.removeLoc)
 
 module.exports = router

@@ -32,6 +32,7 @@ module.exports = class LocController {
                     dataIn: req.body.dataIn,
                     dataFim: req.body.dataFim,
                     valor,
+                    idCarro:car.id
                 }
                 await Loc.create(loc)
                 res.redirect('/locacao/todas')
@@ -61,12 +62,22 @@ module.exports = class LocController {
         //salvar alterações
     static async updateLocSave(req, res) {
             try {
+                const id = req.params.id
+                const locacao = await Loc.findOne({ where: { id: id }, raw: true })
+                const idcar=locacao.idCarro
+                const car = await Car.findOne({ where: { id: idcar }, raw: true })
+                const dias = dif(
+                    new Date(req.body.dataFim),
+                    new Date(req.body.dataIn)
+                    )
+                const valor = dias*car.valor_loc
                 const loc = {
                     nome: req.body.nome,
                     veiculo: req.body.veiculo,
                     dataIn: req.body.dataIn,
                     dataFim: req.body.dataFim,
-                    dias,
+                    valor,
+                    idCarro:car.id
                 }
                 await Loc.update(loc, { where: { id: id } })
                 res.redirect('/locacao/todas')
