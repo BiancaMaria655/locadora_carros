@@ -45,6 +45,13 @@ const Loc = db.define('locacao', {
     notEmpty: {
       msg: 'Valor Total não pode ser em branco!'
     }
+  },
+  status: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    notEmpty: {
+      msg: 'Status não pode ser em branco!'
+    }
   }
 });
 

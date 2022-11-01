@@ -10,6 +10,7 @@
       <th scope="col">Data de Inicio da Locação</th>
       <th scope="col">Data Final da Locação</th>
       <th scope="col">Valor Total da Locação</th>
+      <th scope="col">Status Locação</th>
     </tr>
   </thead>
   <tbody>
@@ -20,13 +21,10 @@
       <td>{{this.dataIn}}</td>
       <td>{{this.dataFim}}</td>
       <td>{{this.valor}}</td>
+      <td>{{this.status}}</td>
       <td>
         <div class="col-md-4 actions">
         <a href="/locacao/editar/{{this.id}}">Editar</a>
-        <form action="/locacao/remover" method="post">
-          <input type="hidden" name="id" value="{{this.id}}">
-          <button type="submit" class="btn-delete">Remover</button>
-        </form>
         </div>
       </td>
     </tr>

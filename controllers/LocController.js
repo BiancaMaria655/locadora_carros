@@ -34,17 +34,20 @@ module.exports = class LocController {
                 const valor = dias*car.valor_loc
                 if(valor==0){
                     const val=car.valor_loc
+                    const StatusLoc = "EM ABERTO"
                     const loc = {
                         nome: req.body.nome,
                         veiculo: req.body.veiculo,
                         dataIn: req.body.dataIn,
                         dataFim: req.body.dataFim,
                         valor:val,
+                        status:StatusLoc,
                         idCarro:car.id,
                         idUser:customer.id,
                     }
                     await Loc.create(loc)
-                    const status = "Não"
+
+                    const Status = "Não"
                     const carro = {
                         nome: car.nome,
                         modelo: car.modelo,
@@ -52,23 +55,25 @@ module.exports = class LocController {
                         fabricante: car.fabricante,
                         valor_loc:car.valor_loc,
                         cor: car.cor,
-                        disponivel: status,
+                        disponivel: Status,
                         adicionais: car.adicionais
                     }
                     await Car.update(carro, { where: { id: id } })
-                    res.redirect('/locacao/todas')
+                    res.redirect('/locacao/todasUsu')
                 }else{
-                const loc = {
-                    nome: req.body.nome,
-                    veiculo: req.body.veiculo,
-                    dataIn: req.body.dataIn,
-                    dataFim: req.body.dataFim,
-                    valor:valor,
-                    idCarro:car.id,
-                    idUser:customer.id,
+                    const StatusLoc = "EM ABERTO"
+                    const loc = {
+                        nome: req.body.nome,
+                        veiculo: req.body.veiculo,
+                        dataIn: req.body.dataIn,
+                        dataFim: req.body.dataFim,
+                        valor:valor,
+                        status:StatusLoc,
+                        idCarro:car.id,
+                        idUser:customer.id,
                 }
                 await Loc.create(loc)
-                const status = "Não"
+                const Status = "Não"
                     const carro = {
                         nome: car.nome,
                         modelo: car.modelo,
@@ -76,26 +81,28 @@ module.exports = class LocController {
                         fabricante: car.fabricante,
                         valor_loc:car.valor_loc,
                         cor: car.cor,
-                        disponivel: status,
+                        disponivel: Status,
                         adicionais: car.adicionais
                     }
                 await Car.update(carro, { where: { id: id } })
-                res.redirect('/locacao/todas')
+                res.redirect('/locacao/todasUsu')
             }
             } catch (error) {
                 console.log(error)
             }
         }
-        //listar locações
-    static async allLoc(req, res) {
-            try {
-                const loc = await Loc.findAll({ raw: true })
-                res.render('loc/allLoc', { loc })
-            } catch (error) {
-                console.log(error)
-            }
+        
+        //listar locações feitas pelo usuário logado
+    static async allLocUsu(req, res) {
+        try {
+            const id1 = req.session.userid;
+            const loc = await Loc.findAll({ where: { idUser: id1 }, raw: true })
+            res.render('loc/allLocUsu', { loc })
+        } catch (error) {
+            console.log(error)
         }
-        //Editar Locações
+    }
+        //Editar Locações Usuário
     static async updateLoc(req, res) {
             try {
                 const id = req.params.id
@@ -105,7 +112,7 @@ module.exports = class LocController {
                 console.log(error)
             }
         }
-        //salvar alterações
+        //salvar alterações Usuário
     static async updateLocSave(req, res) {
             try {
                 const id = req.params.id
@@ -124,42 +131,46 @@ module.exports = class LocController {
                 const valor = dias*car.valor_loc
                 if(valor==0){
                     const val = car.valor_loc
+                    const StatusLoc = "EM ABERTO"
                     const loc = {
                         nome: req.body.nome,
                         veiculo: req.body.veiculo,
                         dataIn: req.body.dataIn,
                         dataFim: req.body.dataFim,
                         valor:val,
+                        status:StatusLoc,
                         idCarro:car.id,
                         idUser: customer.id
                     }
                     await Loc.update(loc, { where: { id: id } })
-                    res.redirect('/locacao/todas')
+                    res.redirect('/locacao/todasUsu')
                 }else{
+                    const StatusLoc = "EM ABERTO"
                     const loc = {
                         nome: req.body.nome,
                         veiculo: req.body.veiculo,
                         dataIn: req.body.dataIn,
                         dataFim: req.body.dataFim,
-                        valor:valor,
+                        valor: valor,
+                        status: StatusLoc,
                         idCarro:car.id,
                         idUser: customer.id
                     }
                     await Loc.update(loc, { where: { id: id } })
-                    res.redirect('/locacao/todas')
+                    res.redirect('/locacao/todasUsu')
                 }
             } catch (error) {
                 console.log(error)
             }
         }
-        // remover registro
+        // remover registro ADM
     static async removeLoc(req, res) {
         try {
             const id = req.body.id
             const locacao = await Loc.findOne({ where: { id: id }, raw: true })
             const idcar=locacao.idCarro
             const car = await Car.findOne({ where: { id: idcar }, raw: true })
-            const status = "Sim"
+            const Status = "Sim"
                     const carro = {
                         nome: car.nome,
                         modelo: car.modelo,
@@ -167,12 +178,80 @@ module.exports = class LocController {
                         fabricante: car.fabricante,
                         valor_loc:car.valor_loc,
                         cor: car.cor,
-                        disponivel: status,
+                        disponivel: Status,
                         adicionais: car.adicionais
                     }
                 await Car.update(carro, { where: { id: idcar } })
             await Loc.destroy({ where: { id: id } })
-            res.redirect('/locacao/todas')
+            res.redirect('/locacao/todasUsu')
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //Editar Locações Administrador
+    static async updateLocAdm(req, res) {
+        try {
+            const id = req.params.id
+            const loc = await Loc.findOne({ where: { id: id }, raw: true })
+            res.render('loc/editLocADM', { loc })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    //salvar alterações Administrador 
+    static async updateLocSaveAdm(req, res) {
+        try {
+            const id = req.params.id
+            const locacao = await Loc.findOne({ where: { id: id }, raw: true })
+
+            const iduser = locacao.idUser
+            const customer = await User.findOne({ where: { id: iduser }, raw: true })
+
+            const idcar=locacao.idCarro
+            const car = await Car.findOne({ where: { id: idcar }, raw: true })
+            const dias = dif(
+                new Date(req.body.dataFim),
+                new Date(req.body.dataIn)
+                )
+            const valor = dias*car.valor_loc
+            if(valor==0){
+                const val = car.valor_loc
+                const loc = {
+                    nome: req.body.nome,
+                    veiculo: req.body.veiculo,
+                    dataIn: req.body.dataIn,
+                    dataFim: req.body.dataFim,
+                    valor:val,
+                    status:req.body.status,
+                    idCarro:car.id,
+                    idUser: customer.id
+                }
+                await Loc.update(loc, { where: { id: id } })
+                res.redirect('/locacao/todasAdm')
+            }else{
+                const loc = {
+                    nome: req.body.nome,
+                    veiculo: req.body.veiculo,
+                    dataIn: req.body.dataIn,
+                    dataFim: req.body.dataFim,
+                    valor: valor,
+                    status: req.body.status,
+                    idCarro:car.id,
+                    idUser: customer.id
+                }
+                await Loc.update(loc, { where: { id: id } })
+                res.redirect('/locacao/todasAdm')
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    //listar locações de todos os usuarios
+    static async allLoc(req, res) {
+        try {
+            const loc = await Loc.findAll({ raw: true })
+            res.render('loc/allLocADM', { loc })
         } catch (error) {
             console.log(error)
         }

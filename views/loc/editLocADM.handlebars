@@ -1,6 +1,6 @@
 <h1>Editando Locação do Cliente: {{loc.nome}}</h1>
 
-<form action="/locacao/editar/{{loc.id}}" method="post" class="row g-3">
+<form action="/locacao/editarAdm/{{loc.id}}" method="post" class="row g-3">
 
   <div class="col-md-6">
     <input type="hidden" name="id" value="{{loc.id}}" />
@@ -14,11 +14,19 @@
   </div>
   <div class="col-md-6">
     <label for="dataIn" class="form-label">Data de Inicio da Locação</label>
-    <input type="date" name="dataIn" class="form-control" value="{{loc.dataIn}}" disabled=""/>
+    <input type="date" name="dataIn" class="form-control" value="{{loc.dataIn}}"/>
   </div>
   <div class="col-md-6">
     <label for="dataFim" class="form-label">Data Final da Locação</label>
     <input type="date" name="dataFim" class="form-control" value="{{loc.dataFim}}"/>
+  </div>
+  <div class="col-md-6">
+    <label for="status" class="form-label">Status da Locação</label>
+    <select name="status">
+      <option value="Em Andamento" selected>Em Andamento</option>
+      <option value="Pago">Pago</option>
+      <option value="Cancelada">Cancelada</option>
+    </select>
   </div>
   <div class="col-md-6">
     <input type="submit" class="btn btn-primary" value="Atualizar" />
