@@ -3,11 +3,11 @@ const User = require('../models/User');
 
 module.exports = class CarController {
   //tela para cadastrar veículo
-  static async newCar(req, res) {
-    const id = req.session.userid;
-    const user = await User.findOne({ where: { id: id } });
-
+  static async newCar(req, res) {    
     try {
+      const id = req.session.userid;
+      const user = await User.findOne({ where: { id: id } });
+
       if (user.user_type == "ADM") {
         res.render('car/addCar');
       }
@@ -42,11 +42,19 @@ module.exports = class CarController {
   }
 
   //lista de todos os veículos
-  static async allCars(req, res) {
+  static async allCars(req, res) {    
     try {
-      //por enquanto exibe sem pedir login
-      const cars = await Car.findAll({ raw: true });
-      res.render('car/allCars', { cars });
+      const id = req.session.userid;
+      const user = await User.findOne({ where: { id: id } });
+
+      if (user.user_type == "ADM") {
+        const cars = await Car.findAll({ raw: true });
+        res.render('car/allCars', { cars });
+      }
+      else {
+        req.flash('message', 'Você precisa ser Administrador para acessar essa página');
+        res.redirect('/cliente/dashboard');
+      }
     } catch (error) {
       console.log(error);
     }
