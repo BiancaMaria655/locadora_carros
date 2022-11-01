@@ -5,8 +5,8 @@
     <div class="col-md-6">
       <input type="hidden" name="disponivel" value="Sim">
       <label for="nome" class="form-label">Nome Locatario</label>
-      <input type="text" name="nome" class="form-control" required>
-    </div>  
+      <input type="text" name="nome" class="form-control" value="{{customer.name}}"  readonly="">
+    </div>
     <div class="col-md-6">
       <label for="veiculo" class="form-label">Veiculo</label>
       <input type="text" name="veiculo" class="form-control" value="{{car.nome}}" readonly=""/>

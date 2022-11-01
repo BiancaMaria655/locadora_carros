@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./Database');
+const User = require('./User');
 const Car = require('./Car');
 const { HasMany } = require('sequelize');
 
@@ -50,7 +51,12 @@ const Loc = db.define('locacao', {
 Loc.belongsTo(Car,{
   constraint:true,
   foreignKey:'idCarro'
+}),
+Loc.belongsTo(User,{
+  constraint:true,
+  foreignKey:'idUser'
 })
+
 
 Loc.sync();
 
