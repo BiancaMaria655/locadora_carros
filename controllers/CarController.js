@@ -35,7 +35,7 @@ module.exports = class CarController {
         adicionais: req.body.adicionais
       };
       await Car.create(car);
-      res.redirect('/carro/todos');
+      res.redirect('/admin/dashboard');
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +89,7 @@ module.exports = class CarController {
         adicionais: req.body.adicionais
       };
       await Car.update(car, { where: { id: id } });
-      res.redirect('todos');
+      res.redirect('/admin/dashboard');
     } catch (error) {
       console.log(error);
     }
