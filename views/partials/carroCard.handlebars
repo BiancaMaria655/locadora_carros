@@ -17,7 +17,7 @@
       <p>Disponivel: {{this.disponivel}}</p>
       <h3 class="" style="color: green;">Valor por dia: {{this.valor_loc}}</h3>
     </div>
-    {{#ifCond this.disponivel '==' 'NAO'}}
+    {{#ifCond this.disponivel '==' 'Não'}}
       <a href="" class="btn btn-disabled">Indisponivel</a>
     {{else}}
       <a href="/locacao/adicionar/{{this.id}}" class="btn btn-success">Alugar</a>

@@ -67,8 +67,8 @@ app.use(
       resave: false,
       saveUninitialized: false,
       secure: false, //usado somente com https
-      maxAge: 360000, //tempo máximo do cookie em milisegundos
-      expires: new Date(Date.now() + 360000), //marca a hora de expirar
+      maxAge: 36000000, //tempo máximo do cookie em milisegundos
+      expires: new Date(Date.now() + 36000000), //marca a hora de expirar
       httpOnly: true
     }
   })
