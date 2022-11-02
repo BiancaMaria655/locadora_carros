@@ -10,5 +10,4 @@ router.post('/atualizar', UserController.updateCustomerSave);
 router.get('/apagar', UserController.removeCustomerConfirmacao);
 router.post('/apagar', UserController.removeCustomer);
 router.get('/dashboard', UserController.customerDashboard);
-
 module.exports = router;

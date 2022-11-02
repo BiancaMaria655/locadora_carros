@@ -1,13 +1,15 @@
 <div class="p-2 mt-5 container">
-  <h1>Conheça Nosso Veiculos</h1>
+  <h1>Conheça Nossos Veiculos</h1>
 </div>
-<div class="p-2 mt-5 d-flex flex-wrap container">
+<div class="p-2 mt-5 d-flex flex-wrap container" id="listaCarros">
   {{#if carro}}
     {{#each carro}}
-      <div class="p-2">
+      <div class="p-2" >
         {{>carroCard}}
       </div>
       
     {{/each}}
   {{/if}}
 </div>
+
+<script src="/js/frota.js"></script>
