@@ -22,6 +22,8 @@ module.exports = class LocController {
         // salvar registro de locação
     static async newLocSave(req, res) {
             try {
+                
+
                 const id1 = req.session.userid;
                 const customer = await User.findOne({ where: { id: id1 }, raw: true })
                 const id = req.params.id
@@ -31,69 +33,81 @@ module.exports = class LocController {
                     new Date(req.body.dataFim),
                     new Date(req.body.dataIn)
                     )
-                if(dias>365){
-                    req.flash('message', 'As datas não podem superar o período de um ano');
+
+                var data = new Date();
+                var dia = String(data.getDate()).padStart(2, '0');
+                var mes = String(data.getMonth() + 1).padStart(2, '0');
+                var ano = data.getFullYear();
+                const dataAtual = new Date(dia + '/' + mes + '/' + ano);
+                const data_inicial=new Date(req.body.dataIn)
+                if(data_inicial < dataAtual){
+                    req.flash('message', 'Data inicial não pode ser menor que a data de hoje');
                     res.redirect('/carro/frota');
                 }else{
-                    if(dias<0){
-                        req.flash('message', 'A data inicial não pode ser maior que a final');
+                    if(dias>365){
+                        req.flash('message', 'As datas não podem superar o período de um ano');
                         res.redirect('/carro/frota');
                     }else{
-                        const valor = dias*car.valor_loc
-                        if(valor==0){
-                            const val=car.valor_loc
-                            const StatusLoc = "Em Andamento"
-                            const loc = {
-                                nome: req.body.nome,
-                                veiculo: req.body.veiculo,
-                                dataIn: req.body.dataIn,
-                                dataFim: req.body.dataFim,
-                                valor:val,
-                                status:StatusLoc,
-                                idCarro:car.id,
-                                idUser:customer.id,
+                        if(dias<0){
+                            req.flash('message', 'A data inicial não pode ser maior que a final');
+                            res.redirect('/carro/frota');
+                        }else{
+                            const valor = dias*car.valor_loc
+                            if(valor==0){
+                                const val=car.valor_loc
+                                const StatusLoc = "Em Andamento"
+                                const loc = {
+                                    nome: req.body.nome,
+                                    veiculo: req.body.veiculo,
+                                    dataIn: req.body.dataIn,
+                                    dataFim: req.body.dataFim,
+                                    valor:val,
+                                    status:StatusLoc,
+                                    idCarro:car.id,
+                                    idUser:customer.id,
+                                }
+                                await Loc.create(loc)
+
+                                const Status = "Não"
+                                const carro = {
+                                    nome: car.nome,
+                                    modelo: car.modelo,
+                                    ano: car.ano,
+                                    fabricante: car.fabricante,
+                                    valor_loc:car.valor_loc,
+                                    cor: car.cor,
+                                    disponivel: Status,
+                                    adicionais: car.adicionais
+                                }
+                                await Car.update(carro, { where: { id: id } })
+                                res.redirect('/locacao/todasUsu')
+                            }else{
+                                const StatusLoc = "Em Andamento"
+                                const loc = {
+                                    nome: req.body.nome,
+                                    veiculo: req.body.veiculo,
+                                    dataIn: req.body.dataIn,
+                                    dataFim: req.body.dataFim,
+                                    valor:valor,
+                                    status:StatusLoc,
+                                    idCarro:car.id,
+                                    idUser:customer.id,
                             }
                             await Loc.create(loc)
-
                             const Status = "Não"
-                            const carro = {
-                                nome: car.nome,
-                                modelo: car.modelo,
-                                ano: car.ano,
-                                fabricante: car.fabricante,
-                                valor_loc:car.valor_loc,
-                                cor: car.cor,
-                                disponivel: Status,
-                                adicionais: car.adicionais
-                            }
+                                const carro = {
+                                    nome: car.nome,
+                                    modelo: car.modelo,
+                                    ano: car.ano,
+                                    fabricante: car.fabricante,
+                                    valor_loc:car.valor_loc,
+                                    cor: car.cor,
+                                    disponivel: Status,
+                                    adicionais: car.adicionais
+                                }
                             await Car.update(carro, { where: { id: id } })
                             res.redirect('/locacao/todasUsu')
-                        }else{
-                            const StatusLoc = "Em Andamento"
-                            const loc = {
-                                nome: req.body.nome,
-                                veiculo: req.body.veiculo,
-                                dataIn: req.body.dataIn,
-                                dataFim: req.body.dataFim,
-                                valor:valor,
-                                status:StatusLoc,
-                                idCarro:car.id,
-                                idUser:customer.id,
-                        }
-                        await Loc.create(loc)
-                        const Status = "Não"
-                            const carro = {
-                                nome: car.nome,
-                                modelo: car.modelo,
-                                ano: car.ano,
-                                fabricante: car.fabricante,
-                                valor_loc:car.valor_loc,
-                                cor: car.cor,
-                                disponivel: Status,
-                                adicionais: car.adicionais
                             }
-                        await Car.update(carro, { where: { id: id } })
-                        res.redirect('/locacao/todasUsu')
                         }
                     }
                 }
@@ -234,70 +248,81 @@ module.exports = class LocController {
                 new Date(req.body.dataFim),
                 new Date(req.body.dataIn)
                 )
-            if(dias>365){
-                req.flash('message', 'As datas não podem superar o período de um ano');
-                res.redirect('/locacao/todasAdm');
+            var data = new Date();
+            var dia = String(data.getDate()).padStart(2, '0');
+            var mes = String(data.getMonth() + 1).padStart(2, '0');
+            var ano = data.getFullYear();
+            const dataAtual = new Date(dia + '/' + mes + '/' + ano);
+            const data_inicial=new Date(req.body.dataIn)
+            if(data_inicial < dataAtual){
+                req.flash('message', 'Data inicial não pode ser menor que a data de hoje');
+                res.redirect('/carro/frota');
             }else{
-                if(dias<0){
-                    req.flash('message', 'A data inicial não pode ser maior que a final');
+                if(dias>365){
+                    req.flash('message', 'As datas não podem superar o período de um ano');
                     res.redirect('/locacao/todasAdm');
                 }else{
-                    const valor = dias*car.valor_loc
-                    if(valor==0){
-                        const val = car.valor_loc
-                        const loc = {
-                            nome: req.body.nome,
-                            veiculo: req.body.veiculo,
-                            dataIn: req.body.dataIn,
-                            dataFim: req.body.dataFim,
-                            valor:val,
-                            status:req.body.status,
-                            idCarro:car.id,
-                            idUser: customer.id
-                        }
+                    if(dias<0){
+                        req.flash('message', 'A data inicial não pode ser maior que a final');
+                        res.redirect('/locacao/todasAdm');
+                    }else{
+                        const valor = dias*car.valor_loc
+                        if(valor==0){
+                            const val = car.valor_loc
+                            const loc = {
+                                nome: req.body.nome,
+                                veiculo: req.body.veiculo,
+                                dataIn: req.body.dataIn,
+                                dataFim: req.body.dataFim,
+                                valor:val,
+                                status:req.body.status,
+                                idCarro:car.id,
+                                idUser: customer.id
+                            }
+                            await Loc.update(loc, { where: { id: id } })
+                            res.redirect('/locacao/todasAdm')
+                        }else{
+                            const loc = {
+                                nome: req.body.nome,
+                                veiculo: req.body.veiculo,
+                                dataIn: req.body.dataIn,
+                                dataFim: req.body.dataFim,
+                                valor: valor,
+                                status: req.body.status,
+                                idCarro:car.id,
+                                idUser: customer.id
+                            }
                         await Loc.update(loc, { where: { id: id } })
-                        res.redirect('/locacao/todasAdm')
-                    }else{
-                        const loc = {
-                            nome: req.body.nome,
-                            veiculo: req.body.veiculo,
-                            dataIn: req.body.dataIn,
-                            dataFim: req.body.dataFim,
-                            valor: valor,
-                            status: req.body.status,
-                            idCarro:car.id,
-                            idUser: customer.id
+                        const statusLoc = req.body.status
+                        if(statusLoc=="Pago"||statusLoc=="Cancelada"){
+                            const Status = "Sim"
+                                const carro = {
+                                    nome: car.nome,
+                                    modelo: car.modelo,
+                                    ano: car.ano,
+                                    fabricante: car.fabricante,
+                                    valor_loc:car.valor_loc,
+                                    cor: car.cor,
+                                    disponivel: Status,
+                                    adicionais: car.adicionais
+                                }
+                            await Car.update(carro, { where: { id: idcar } })
+                        }else{
+                                const Status = "Não"
+                                const carro = {
+                                    nome: car.nome,
+                                    modelo: car.modelo,
+                                    ano: car.ano,
+                                    fabricante: car.fabricante,
+                                    valor_loc:car.valor_loc,
+                                    cor: car.cor,
+                                    disponivel: Status,
+                                    adicionais: car.adicionais
+                                }
+                            await Car.update(carro, { where: { id: idcar } })
                         }
-                    await Loc.update(loc, { where: { id: id } })
-                    const statusLoc = req.body.status
-                    if(statusLoc=="Pago"||statusLoc=="Cancelada"){
-                        const Status = "Sim"
-                            const carro = {
-                                nome: car.nome,
-                                modelo: car.modelo,
-                                ano: car.ano,
-                                fabricante: car.fabricante,
-                                valor_loc:car.valor_loc,
-                                cor: car.cor,
-                                disponivel: Status,
-                                adicionais: car.adicionais
-                            }
-                        await Car.update(carro, { where: { id: idcar } })
-                    }else{
-                            const Status = "Não"
-                            const carro = {
-                                nome: car.nome,
-                                modelo: car.modelo,
-                                ano: car.ano,
-                                fabricante: car.fabricante,
-                                valor_loc:car.valor_loc,
-                                cor: car.cor,
-                                disponivel: Status,
-                                adicionais: car.adicionais
-                            }
-                        await Car.update(carro, { where: { id: idcar } })
-                    }
-                    res.redirect('/locacao/todasAdm')
+                        res.redirect('/locacao/todasAdm')
+                        }
                     }
                 }
             }
