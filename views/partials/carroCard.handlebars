@@ -2,9 +2,9 @@
 
 <div class="card">
   {{#if this.imgName}}
-  <img src="/images/{{this.imgName}}.png" alt="" class="card-img-top" style="width: 18rem; ">
+  <img src="/images/{{this.imgName}}.png" alt="" class="card-img-top" style="width: 20rem; ">
   {{else}}
-  <img src="/images/null.png" alt="" class="card-img-top" style="width: 18rem; ">
+  <img src="/images/null.png" alt="" class="imgCard card-img-top" style="width: 18rem;">
   {{/if}}
   
   <div class="card-body">
@@ -17,7 +17,7 @@
       <p>Disponivel: {{this.disponivel}}</p>
       <h3 class="" style="color: green;">Valor por dia: {{this.valor_loc}}</h3>
     </div>
-    {{#ifCond this.disponivel '==' 'Não'}}
+    {{#ifCond this.disponivel '!=' 'SIM' }}
       <a href="" class="btn btn-disabled">Indisponivel</a>
     {{else}}
       <a href="/locacao/adicionar/{{this.id}}" class="btn btn-success">Alugar</a>

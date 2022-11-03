@@ -1,5 +1,6 @@
 const Car = require('../models/Car');
 const User = require('../models/User');
+const Loc = require('../models/Loc');
 
 module.exports = class AdminController {
   // admin functions
@@ -13,7 +14,10 @@ module.exports = class AdminController {
       const cars = await Car.findAll({
         raw: true
       });
-      res.render('users/admin/Dashboard', { users, cars });
+      const locacoes = await Loc.findAll({
+        raw: true
+      });
+      res.render('users/admin/Dashboard', { users, cars, locacoes });
     } catch (error) {
       console.log(error);
     }

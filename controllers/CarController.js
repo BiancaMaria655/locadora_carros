@@ -32,7 +32,8 @@ module.exports = class CarController {
         valor_loc: req.body.valor_loc,
         cor: req.body.cor,
         disponivel: req.body.disponivel,
-        adicionais: req.body.adicionais
+        adicionais: req.body.adicionais,
+        imgName: req.body.imgName
       };
       await Car.create(car);
       res.redirect('/carro/todos');
@@ -86,7 +87,8 @@ module.exports = class CarController {
         valor_loc: req.body.valor_loc,
         cor: req.body.cor,
         disponivel: req.body.disponivel,
-        adicionais: req.body.adicionais
+        adicionais: req.body.adicionais,
+        imgName: req.body.imgName
       };
       await Car.update(car, { where: { id: id } });
       res.redirect('todos');

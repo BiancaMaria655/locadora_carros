@@ -52,7 +52,6 @@ function editFields(list) {
 function editFieldsCar(list) {
   var el = document.getElementById(list);
 
-
   var btn = document.getElementById(el);
   var id = list.id.slice(7);
   var btnE = document.getElementById('btnEcar' + id);
@@ -76,14 +75,15 @@ function editFieldsCar(list) {
     var formH2 = document.getElementById('formH2car');
     var formNome = document.getElementById('formNomeCarro');
     var formModelo = document.getElementById('formModelo');
-    var formAno= document.getElementById('formAno');
-    var formFab= document.getElementById('formFabricante');
+    var formAno = document.getElementById('formAno');
+    var formFab = document.getElementById('formFabricante');
     var formValor = document.getElementById('formValor');
     var formCor = document.getElementById('formCor');
     var formAdic = document.getElementById('formAdicionais');
     var formDisponivel = document.getElementById('formDisponivel');
     var formImg = document.getElementById('formImgName');
-    var form = document.getElementById('formCar')
+    var form = document.getElementById('formCar');
+    var formIdcar = document.getElementById('updateFormIdcar');
 
     form.setAttribute('action', '/carro/editar');
 
@@ -97,7 +97,7 @@ function editFieldsCar(list) {
     formAdic.setAttribute('value', adicionais.innerHTML);
     formDisponivel.setAttribute('value', disponivel.innerHTML);
     formImg.setAttribute('value', imgName.innerHTML);
-    
+    formIdcar.setAttribute('value', realId.innerHTML);
 
     createButton.setAttribute('hidden', true);
     uptadeButton.removeAttribute('hidden');
@@ -141,15 +141,14 @@ function cancelButtonCar() {
   var formH2 = document.getElementById('formH2car');
   var formNome = document.getElementById('formNomeCarro');
   var formModelo = document.getElementById('formModelo');
-  var formAno= document.getElementById('formAno');
-  var formFab= document.getElementById('formFabricante');
+  var formAno = document.getElementById('formAno');
+  var formFab = document.getElementById('formFabricante');
   var formValor = document.getElementById('formValor');
   var formCor = document.getElementById('formCor');
   var formAdic = document.getElementById('formAdicionais');
   var formDisponivel = document.getElementById('formDisponivel');
   var formImg = document.getElementById('formImgName');
-  var form = document.getElementById('formCar')
-
+  var form = document.getElementById('formCar');
 
   formH2.innerHTML = 'Cadastro de Veículos';
   form.setAttribute('action', '/carro/adicionar');
@@ -166,15 +165,13 @@ function cancelButtonCar() {
   formAdic.setAttribute('value', '');
   formDisponivel.setAttribute('value', '');
   formImg.setAttribute('value', '');
-  
 }
 
 function verifyIfCarIsAvaliable() {
   btnAlugar = document.getElementById('btnAlugar');
   info = document.getElementById('dispInfo');
 
-  btnAlugar.setAttribute('disabled', true)
-  
+  btnAlugar.setAttribute('disabled', true);
 }
 
 function _cpf(cpf) {

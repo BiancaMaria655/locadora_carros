@@ -102,6 +102,42 @@
         </table>
       </div>
     </div>
-  </div>
+
+    <div class="locacoes p-2">
+
+      <div class="border rounded p-2">
+        {{#if locacoes}}
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Veiculo</th>
+                <th scope="col">Data Início</th>
+                <th scope="col">Data Fim</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Status</th>
+                <th scope="col">ID Carro</th>
+                <th scope="col">ID Usuário</th>
+                <th scope="col">Ações</th>
+                
+
+              </tr>
+              
+            </thead>
+          
+        {{/if}}
+          <tbody>
+
+            {{#each locacoes}}
+            
+                {{>locacoes}}
+            
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
 </div>
+
 

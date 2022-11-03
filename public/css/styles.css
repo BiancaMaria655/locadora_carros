@@ -31,8 +31,15 @@ input.invalid {
 }
 
 .btn-disabled{
+    padding: 5px;
+    border-radius: 5px;
     color: white;
     background-color: grey;
     border: 1px gray;
     pointer-events: none;
+}
+
+.imgCard{
+
+    align-self: center;
 }

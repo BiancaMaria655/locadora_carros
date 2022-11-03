@@ -1,0 +1,22 @@
+<tr>
+  <th scope="row">{{this.id}}</th>
+  <td id="locNome{{this.id}}">{{this.nome}}</td>
+  <td id="locVeiculo{{this.id}}">{{this.veiculo}}</td>
+  <td id="locDtIni{{this.id}}">{{this.dataIn}}</td>
+  <td id="locDtFim{{this.id}}">{{this.dataFim}}</td>
+  <td id="locValor{{this.id}}">{{this.valor}}</td>
+  <td id="locStatus{{this.id}}">{{this.status}}</td>
+  <td id="locIdCarro{{this.id}}">{{this.idCarro}}</td>
+  <td id="locIdUser{{this.id}}">{{this.idUser}}</td>
+
+  <td>
+    <div class="buttons d-flex">
+      <div class="pe-1">
+        <a onclick="editFieldsLoc(btnELoc{{this.id}})"  class="btn btn-warning" name="btnE" id="btnELoc{{this.id}}">Editar</a>
+      </div>
+      <form action="/carro/remover" method="POST" class='' >
+        <input type="text" name="id" value="{{this.id}}", hidden>
+        <input type="submit" value="Excluir" class="btn btn-danger" >
+      </form>
+  </td>
+</tr>

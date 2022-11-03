@@ -18,4 +18,6 @@ router.post('/editar/:id',authController.verifyIfSessionExists, LocController.up
 
 router.post('/remover',authController.verifyIfSessionExists, LocController.removeLoc)
 
+router.post('/devolver/:id', authController.verifyIfSessionExists,LocController.devolverVeiculo)
+
 module.exports = router

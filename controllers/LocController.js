@@ -314,4 +314,14 @@ module.exports = class LocController {
             console.log(error)
         }
     }
+
+    static async devolverVeiculo(req, res){
+        const id = req.params.id;
+
+        const locData = {
+            status: 'Entregue'
+        }
+        await Loc.update(locData, {where:{id:id}})
+        res.redirect('/locacao/todasUsu')
+    }
 }
