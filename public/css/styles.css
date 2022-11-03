@@ -102,3 +102,13 @@ input.invalid {
     height: 100%;
     margin-top: 0%;
 }
+
+.text-front{
+    position: absolute;
+    transform: translateX(25%) translateY(100%);
+}
+
+.content{
+    position: absolute;
+    transform: translateY(220%);
+}
