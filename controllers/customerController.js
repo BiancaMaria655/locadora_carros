@@ -53,7 +53,7 @@ module.exports = class userController {
     static async customerDashboard(req, res) {
         try {
             const id = req.session.userid;
-            const loc = await Loc.findAll({ where: { idUser: id1 }, raw: true })
+            const loc = await Loc.findAll({ where: { idUser: id }, raw: true })
             const customer = await User.findOne({ where: { id: id }, raw: true })
             res.render('users/customer/Dashboard', { customer, loc });
         } catch (error) {
