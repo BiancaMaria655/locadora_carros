@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e2c027;">
+<nav class="navbar navbar-expand-lg navbar-light color-yellow ">
   <div class="container-fluid">
     <a class="navbar-brand" href="/inicio">LocaCars</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,14 +16,11 @@
         
         {{#if session.userid}}
         <li class="nav-item">
-          <a href="/cliente/dashboard" class="btn btn-primary me-2 btn-nav" role="button">Minhas locações</a>
-        </li>
-        <li class="nav-item">
-          <a href="/locacao/adicionar/:{{session.userid}}" class="btn btn-primary me-2 btn-nav" role="button">Nova alocação</a>
+          <a class="nav-link" href="/cliente/dashboard">Minhas locações</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            Sua conta
+            Minha conta
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/cliente/atualizar/:{{session.userid}}">Atualizar meus dados</a></li>

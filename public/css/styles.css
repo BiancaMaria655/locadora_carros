@@ -66,6 +66,8 @@ input.invalid {
 
 .title {
     text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 #message {
@@ -78,7 +80,7 @@ input.invalid {
     max-width: 80%;
 }
 
-.btn-disabled{
+.btn-disabled {
     padding: 5px;
     border-radius: 5px;
     color: white;
@@ -86,6 +88,7 @@ input.invalid {
     border: 1px gray;
     pointer-events: none;
 }
+
 #msgemail,
 #msgcpf,
 #msgcnh {
@@ -103,12 +106,42 @@ input.invalid {
     margin-top: 0%;
 }
 
-.text-front{
+.text-front {
     position: absolute;
     transform: translateX(25%) translateY(100%);
 }
 
-.content{
+.content {
     position: absolute;
     transform: translateY(220%);
+}
+
+.color-yellow {
+    background-color: #FFCA2C;
+}
+
+.btn-yellow {
+    background-color: #FFCA2C;
+    border-color: #FFCA2C;
+    color: black;
+}
+
+.btn-yellow:hover {
+    background-color: #FFCA2C;
+    border-color: #FFCA2C;
+    color: black;
+    transform: scale(1.1);
+}
+
+.div-user {
+    display: flex;
+    justify-content: center;
+}
+
+.form-user {
+    width: 80%;
+}
+
+.nav-link:hover {
+    text-decoration-line: underline;
 }
