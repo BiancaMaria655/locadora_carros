@@ -20,9 +20,10 @@ input.invalid {
     text-align: center;
 }
 
+
 /* Menu Dropdown*/
 
-.container-fluid ul li ul li a:hover{
+.container-fluid ul li ul li a:hover {
     overflow: hidden;
     background-color: #e2c02765;
     transition: 0.5s;
@@ -38,9 +39,58 @@ input.invalid {
     max-width: 80%;
 }
 
-.btn-disabled{
+.btn-disabled {
     color: white;
     background-color: grey;
     border: 1px gray;
     pointer-events: none;
+}
+
+#error {
+    color: red;
+    display: none;
+    /* Esconde o span */
+}
+
+#error.visible {
+    display: inline;
+    /* Exibe o span somente se o input for inválido. */
+}
+
+input.invalid {
+    border-color: red;
+}
+
+
+/* Exibição dos veículos */
+
+.title {
+    text-align: center;
+}
+
+#message {
+    color: #004085;
+    background-color: #cce5ff;
+    border: 1px solid#b8daff;
+    border-radius: 5px;
+    text-align: center;
+    margin: 1em auto 2em;
+    max-width: 80%;
+}
+
+#msgemail,
+#msgcpf,
+#msgcnh {
+    margin-left: 2em;
+}
+
+#div_email,
+#div_cpf,
+#div_cnh {
+    display: flex;
+}
+
+.btn-nav {
+    height: 100%;
+    margin-top: 0%;
 }

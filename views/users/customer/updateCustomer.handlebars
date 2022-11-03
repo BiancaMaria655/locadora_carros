@@ -1,4 +1,4 @@
-<form class="row g-3" action="/cliente/atualizar" method="post">
+<form class="row g-3" action="/cliente/atualizar" method="post" name="form1">
   <div class="col-12">
     <input type="hidden" name="user_type" value="CLIENT">
     <input type="hidden" name="id" value="{{customer.id}}" />
@@ -6,12 +6,18 @@
     <input type="text" class="form-control" name="name" value="{{customer.name}}" required>
   </div>
   <div class="col-md-6">
-    <label for="cpf" class="form-label">CPF</label>
-    <input type="text" onkeypress="$(this).mask('000.000.000-00');" class="form-control" name="cpf" id="cpf" value="{{customer.cpf}}" onblur="validarCPF(this)"  required>
+    <div id="div_cpf">
+      <label for="cpf" class="form-label">CPF</label>
+      <div id="msgcpf"></div>
+    </div>
+    <input type="text" onkeypress="$(this).mask('000.000.000-00');" class="form-control" name="cpf" id="cpf" value="{{customer.cpf}}" onchange="validarCPF(this)"  required>
   </div>
   <div class="col-md-6">
-    <label for="cnh" class="form-label">CNH</label>
-    <input type="text" onkeypress="$(this).mask('00000000000')" class="form-control" name="cnh" id="cnh" value="{{customer.cnh}}" onblur="validarCNH(this)" required>   
+    <div id="div_cnh">
+      <label for="cnh" class="form-label">CNH</label>
+      <div id="msgcnh"></div>
+    </div>
+    <input type="text" onkeypress="$(this).mask('00000000000')" class="form-control" name="cnh" id="cnh" value="{{customer.cnh}}" onchange="validarCNH(this)" required>   
   </div>
   <div class="col-12">
     <label for="address" class="form-label">Endereço completo</label>
@@ -22,8 +28,11 @@
     <input type="tel" onkeypress="$(this).mask('(00) 00000-0000')" class="form-control" name="phone" value="{{customer.phone}}" required>
   </div>
   <div class="col-md-6">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" name="email" value="{{customer.email}}" required>
+    <div id="div_email">
+      <label for="email" class="form-label">Email</label>
+      <div id="msgemail"></div>
+    </div>
+    <input type="email" class="form-control" name="email" value="{{customer.email}}" required onchange="validateEmail(form1.email)">
   </div>
   <div class="col-md-6">
     <label for="password" class="form-label">Senha</label>

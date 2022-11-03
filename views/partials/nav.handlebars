@@ -17,13 +17,19 @@
         </li>
         
         {{#if session.userid}}
+        <li class="nav-item">
+          <a href="/cliente/dashboard" class="btn btn-primary me-2 btn-nav" role="button">Minhas locações</a>
+        </li>
+        <li class="nav-item">
+          <a href="/locacao/adicionar/:{{session.userid}}" class="btn btn-primary me-2 btn-nav" role="button">Nova alocação</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
             Sua conta
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/cliente/atualizar/:{{session.userid}}">Atualizar meus dados</a></li>
-            <li><a class="dropdown-item" href="/locacao/todasUsu">Ver minhas locações</a></li>
+            {{!-- <li><a class="dropdown-item" href="/locacao/todasUsu">Ver minhas locações</a></li> --}}
             <li><a class="dropdown-item" href="/cliente/apagar">Apagar minha conta</a></li>
             <li><a class="dropdown-item" href="/usuario/logout">Sair</a></li>
           </ul>
