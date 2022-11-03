@@ -36,7 +36,7 @@ module.exports = class CarController {
         imgName: req.body.imgName
       };
       await Car.create(car);
-      res.redirect('/carro/todos');
+      res.redirect('/admin/dashboard');
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +91,7 @@ module.exports = class CarController {
         imgName: req.body.imgName
       };
       await Car.update(car, { where: { id: id } });
-      res.redirect('todos');
+      res.redirect('/admin/dashboard');
     } catch (error) {
       console.log(error);
     }

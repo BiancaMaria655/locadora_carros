@@ -1,5 +1,6 @@
 const Car = require('../models/Car');
 const User = require('../models/User');
+const Loc = require('../models/Loc')
 
 module.exports = class userController {
 
@@ -25,20 +26,20 @@ module.exports = class userController {
             const cnh = await User.findOne({ where: { cnh: customer.cnh }, raw: true });
             const email = await User.findOne({ where: { email: customer.email }, raw: true })
             if (cpf) {
-                req.flash('CPF já cadastrado anteriormente. Faça o seu login.');
+                req.flash('message', 'CPF já cadastrado anteriormente. Faça o seu login.');
                 res.redirect('/usuario/login')
             }
             if (cnh) {
-                req.flash('CNH já cadastrada anteriormente. Faça o seu login.');
+                req.flash('message', 'CNH já cadastrada anteriormente. Faça o seu login.');
                 res.redirect('/usuario/login')
             }
             if (email) {
-                req.flash('Email já cadastrado anteriormente. Faça o seu login.');
+                req.flash('message', 'Email já cadastrado anteriormente. Faça o seu login.');
                 res.redirect('/usuario/login')
             } else {
                 await User.create(customer);
 
-                req.flash('Você se cadastrou com sucesso!');
+                req.flash('message', 'Você se cadastrou com sucesso!');
                 req.session.save(() => {
                     res.redirect('/usuario/login');
                 });
@@ -120,7 +121,7 @@ module.exports = class userController {
         try {
             const id = req.session.userid;
             await User.destroy({ where: { id: id } });
-            req.flash('O seu cadastro foi apagado com sucesso!');
+            req.flash('message', 'O seu cadastro foi apagado com sucesso!');
             req.session.save(() => {
                 res.redirect('/cliente/login');
             });
