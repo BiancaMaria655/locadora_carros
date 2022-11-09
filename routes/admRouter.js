@@ -9,4 +9,5 @@ router.post('/adicionar',authController.verifyIfSessionExists, AdminController.n
 
 router.post('/editar',authController.verifyIfSessionExists, AdminController.updateAdmin);
 router.post('/excluir',authController.verifyIfSessionExists, AdminController.deleteAdmin);
+router.post('/carro/remover',authController.verifyIfSessionExists, AdminController.removeCar)
 module.exports = router;

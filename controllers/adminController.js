@@ -74,4 +74,14 @@ module.exports = class AdminController {
       res.redirect('/admin/dashboard');
     }
   }
+
+  static async removeCar(req, res) {
+    try {
+      const id = req.body.id;
+      await Car.destroy({ where: { id: id } });
+      res.redirect('/admin/dashboard');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
